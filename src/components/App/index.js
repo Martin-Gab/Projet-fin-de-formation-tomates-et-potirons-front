@@ -1,10 +1,13 @@
-// == Import
+// == Local Import
 import './styles.scss';
+
+// Components Import
+import MembershipForm from 'src/components/MembershipForm';
 
 // == Composant
 const App = () => (
   <div className="app">
-    <h1>Composant : App</h1>
+    <MembershipForm />
   </div>
 );
 
