@@ -4,18 +4,24 @@
 import './membership-form.scss';
 
 const MembershipForm = () => (
-  <div className="form-container">
-    <h1 className="form-title">Formulaire d'adhésion à l'AMAP</h1>
+  <div className="form">
+    <div className="close-form">
+      X
+    </div>
+    <h1 className="form__title">Formulaire d'adhésion à l'AMAP</h1>
+
     <form action="">
 
-      <div className="form-infos">
-        <h3>Informations Personnelles</h3>
+      <div className="infos">
+        <h3 className="infos__title">Informations Personnelles</h3>
         <div className="form-underline" />
-        <input type="text" placeholder="Prénom" name="firstName" required />
-        <input type="text" placeholder="Nom" name="lastName" required />
-        <input type="text" placeholder="Adresse" name="address" required />
-        <input type="text" placeholder="Code Postal" name="zipCode" required />
-        <input type="text" placeholder="Ville" name="city" required />
+        <div className="infos__inputs">
+          <input className="membership-input" type="text" placeholder="Prénom" name="firstName" required />
+          <input className="membership-input" type="text" placeholder="Nom" name="lastName" required />
+          <input className="membership-input" type="text" placeholder="Adresse" name="address" required />
+          <input className="membership-input" type="text" placeholder="Code Postal" name="zipCode" required />
+          <input className="membership-input" type="text" placeholder="Ville" name="city" required />
+        </div>
       </div>
 
       <div className="form-contact">
@@ -46,7 +52,7 @@ const MembershipForm = () => (
           Panier
         </label>
         <label htmlFor="basketType">
-          <input type="radio" name="basketType" id="basketType" value={2} />
+          <input type="radio" name="basketType" id="basketType" value={1} />
           Demi-Panier
         </label>
         <h4>Durée de la formule</h4>
@@ -69,7 +75,7 @@ const MembershipForm = () => (
         <h3>Réglement</h3>
         <div>
           <label htmlFor="paymentType">
-            <input type="radio" name="paymentType" id="paymentType" value={0} />
+            <input type="radio" name="paymentType" id="paymentType" value={0} checked />
             Chèque
           </label>
           <label htmlFor="paymentType">
@@ -79,7 +85,7 @@ const MembershipForm = () => (
         </div>
         <div>
           <label htmlFor="choice">
-            <input type="radio" name="choice" id="choice" value={0} />
+            <input type="radio" name="choice" id="choice" value={0} checked />
             Total
           </label>
           <label htmlFor="choice">
@@ -110,11 +116,11 @@ const MembershipForm = () => (
       <div className="password">
         <label htmlFor="password">
           Choisissez votre mot de passe
-          <input type="password" name="password" id="password" />
+          <input type="password" name="password" id="password" required />
         </label>
         <label htmlFor="password">
           Vérifiez votre mot de passe
-          <input type="password" id="password" />
+          <input type="password" id="password" required />
         </label>
       </div>
 
@@ -130,6 +136,7 @@ const MembershipForm = () => (
       </button>
 
     </form>
+
   </div>
 );
 

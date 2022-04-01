@@ -1,3 +1,50 @@
 // Style for membership form
 
 @use 'src/styles/vars';
+
+.form-underline {
+    height: 2px;
+    width: 100%;
+    border-radius: 2px;
+    background-color: grey;
+    margin-bottom: .5rem;
+}
+
+.membership-input {
+    height: 2rem;
+    margin-bottom: .3rem;
+}
+
+.form {
+    max-width: 80%;
+    margin: 5rem auto 0;
+    background-color: green;
+    padding: vars.$formGutter;
+    text-align: center;
+    position: relative;
+
+    .close-form {
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+    }
+
+    &__title {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .infos {
+        margin-bottom: 1rem;
+
+        &__title {
+            font-size: 1.2rem;
+        }
+
+        &__inputs {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+}
