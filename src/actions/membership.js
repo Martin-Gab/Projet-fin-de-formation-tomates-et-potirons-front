@@ -2,10 +2,15 @@
 
 // Action Types
 export const CHANGE_INPUT = 'CHANGE_INPUT';
+export const TOGGLE_BASKET_OPTION = 'TOGGLE_BASKET_OPTION';
 
 // Action Creators
 export const changeInput = (newValue, fieldName) => ({
   type: CHANGE_INPUT,
   value: newValue,
   field: fieldName,
+});
+
+export const toggleBasketOption = () => ({
+  type: TOGGLE_BASKET_OPTION,
 });

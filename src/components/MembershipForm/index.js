@@ -3,10 +3,14 @@
 // local imports
 import './membership-form.scss';
 import { useSelector, useDispatch } from 'react-redux';
-import { changeInput } from 'src/actions/membership';
+import { changeInput, toggleBasketOption } from 'src/actions/membership';
+
+import BasketOption from './basketOption';
 
 const MembershipForm = () => {
   const dispatch = useDispatch();
+
+  const basketOption = useSelector((state) => state.membership.basketOption);
 
   const firstName = useSelector((state) => state.membership.firstName);
   const lastName = useSelector((state) => state.membership.lastName);
@@ -164,37 +168,16 @@ const MembershipForm = () => {
         <div className="basket">
           <h3 className="section-title">Option Panier</h3>
           <div className="form-underline" />
-          <div className="basket__add">+ Panier</div>
-
-          <div className="basket__size">
-            <h4 className="section-subtitle">Taille</h4>
-            <label htmlFor="basketType">
-              <input type="radio" name="basketType" id="basketType" value={2} defaultChecked />
-              Panier
-            </label>
-            <label htmlFor="basketType">
-              <input type="radio" name="basketType" id="basketType" value={1} />
-              Demi-Panier
-            </label>
+          <div
+            className="basket__add"
+            onClick={() => {
+              dispatch(toggleBasketOption());
+            }}
+          >
+            + Panier
           </div>
 
-          <div className="basket__duration">
-            <h4 className="section-subtitle">Durée de la formule</h4>
-            <label htmlFor="duration">
-              <input type="radio" name="duration" id="duration" value={1} defaultChecked />
-              1 mois (soit 4 paniers)
-            </label>
-            <label htmlFor="duration">
-              <input type="radio" name="duration" id="duration" value={5} />
-              5 mois (soit 20 paniers)
-            </label>
-            <label htmlFor="duration">
-              <input type="radio" name="duration" id="duration" value={10} />
-              10 mois (soit 40 paniers)
-            </label>
-          </div>
-
-          <p className="basket__amount">Montant de la formule panier : 50 €</p>
+          {basketOption && <BasketOption />}
         </div>
 
         <div className="payment">

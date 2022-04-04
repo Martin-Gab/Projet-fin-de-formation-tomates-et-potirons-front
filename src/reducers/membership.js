@@ -1,4 +1,4 @@
-import { CHANGE_INPUT } from 'src/actions/membership';
+import { CHANGE_INPUT, TOGGLE_BASKET_OPTION } from 'src/actions/membership';
 
 export const initialState = {
   isOpen: false,
@@ -79,6 +79,12 @@ const reducer = (state = initialState, action = {}) => {
         default:
           return state;
       }
+
+    case TOGGLE_BASKET_OPTION:
+      return {
+        ...state,
+        basketOption: !state.basketOption,
+      };
 
     default:
       return state;
