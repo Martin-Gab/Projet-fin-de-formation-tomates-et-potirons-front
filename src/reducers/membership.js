@@ -14,6 +14,13 @@ export const initialState = {
   phoneSharing: 0,
   emailSharingChecked: false,
   emailSharing: 0,
+  basketFull: true,
+  basketHalf: false,
+  basketType: 0,
+  duration: 0,
+  oneMonthChecked: true,
+  fiveMonthChecked: false,
+  tenMonthChecked: false,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -76,14 +83,52 @@ const reducer = (state = initialState, action = {}) => {
             emailSharingChecked: !state.emailSharingChecked,
           };
 
+        case 'basketType':
+          return {
+            ...state,
+            basketType: action.value,
+            basketFull: !state.basketFull,
+            basketHalf: !state.basketHalf,
+          };
+
+        case 'oneMonth':
+          return {
+            ...state,
+            duration: action.value,
+            oneMonthChecked: true,
+            fiveMonthChecked: false,
+            tenMonthChecked: false,
+          };
+
+        case 'fiveMonth':
+          return {
+            ...state,
+            duration: action.value,
+            oneMonthChecked: false,
+            fiveMonthChecked: true,
+            tenMonthChecked: false,
+          };
+
+        case 'tenMonth':
+          return {
+            ...state,
+            duration: action.value,
+            oneMonthChecked: false,
+            fiveMonthChecked: false,
+            tenMonthChecked: true,
+          };
+
         default:
           return state;
       }
 
     case TOGGLE_BASKET_OPTION:
+      // TODO Faire le toggle fermeture
       return {
         ...state,
         basketOption: !state.basketOption,
+        basketType: 2,
+        duration: 1,
       };
 
     default:
