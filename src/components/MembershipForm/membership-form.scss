@@ -6,22 +6,38 @@
     height: 2px;
     width: 100%;
     border-radius: 2px;
-    background-color: grey;
+    background-color: vars.$whiteText;
     margin-bottom: .5rem;
 }
 
 .membership-input {
     height: 2rem;
     margin-bottom: .3rem;
+    border: none;
+    padding: .5rem;
+}
+
+.section-title {
+    font-size: 1.2rem;
+    font-weight: vars.$mediumWeight;
+    margin-bottom: .2rem;
+}
+
+.section-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: .1rem;
 }
 
 .form {
     max-width: 80%;
+    max-height: calc(100vh - 5rem);
+    overflow-y: scroll;
     margin: 5rem auto 0;
-    background-color: green;
+    background-color: vars.$primaryLightColor;
     padding: vars.$formGutter;
     text-align: center;
     position: relative;
+    border-radius: 10px;
 
     .close-form {
         position: absolute;
@@ -35,7 +51,7 @@
     }
 
     .infos {
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
 
         &__title {
             font-size: 1.2rem;
@@ -45,6 +61,112 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+        }
+    }
+
+    .contact {
+        margin-bottom: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &__checkbox {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    .basket {
+        margin-bottom: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &__add {
+            background-color: vars.$primaryColor;
+            padding: .6rem 2rem;
+            border-radius: 10px;
+            margin-bottom: .5rem;
+            color: vars.$whiteText;
+            font-weight: vars.$mediumWeight;
+            font-size: 1.1rem;
+
+            &:hover {
+                background-color: vars.$whiteText;
+                color: vars.$primaryColor;
+            }
+        }
+
+        &__size {
+            margin-bottom: 1rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        &__duration {
+            margin-bottom: 1rem;
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    .payment {
+        margin-bottom: 1.5rem;
+
+        &__type {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: .5rem;
+        }
+
+        &__choice {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        &__donation {
+            margin-top: 1rem;
+        }
+    }
+
+    .choice-custom {
+        margin-bottom: .5rem;
+    }
+
+    .password {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .summary {
+        background-color: vars.$primaryColor;
+        color: vars.$whiteText;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+        border-radius: 10px;
+
+        h2 {
+            margin-top: 1rem;
+            font-size: 1.3rem;
+            font-weight: vars.$boldWeight;
+        }
+    }
+
+    button {
+        background-color: vars.$primaryColor;
+        padding: .6rem 2rem;
+        border-radius: 10px;
+        color: vars.$whiteText;
+        font-weight: vars.$mediumWeight;
+        font-size: 1.1rem;
+        border: none;
+
+        &:hover {
+            background-color: vars.$whiteText;
+            color: vars.$primaryColor;
         }
     }
 }

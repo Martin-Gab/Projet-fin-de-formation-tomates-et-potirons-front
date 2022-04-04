@@ -13,7 +13,7 @@ const MembershipForm = () => (
     <form action="">
 
       <div className="infos">
-        <h3 className="infos__title">Informations Personnelles</h3>
+        <h3 className="section-title">Informations Personnelles</h3>
         <div className="form-underline" />
         <div className="infos__inputs">
           <input className="membership-input" type="text" placeholder="Prénom" name="firstName" required />
@@ -24,104 +24,109 @@ const MembershipForm = () => (
         </div>
       </div>
 
-      <div className="form-contact">
-        <h3>Contact</h3>
+      <div className="contact">
+        <h3 className="section-title">Contact</h3>
         <div className="form-underline" />
-        <input type="tel" placeholder="Numéro de téléphone" name="phone" pattern="[0-9]{10}" maxLength={10} required />
-        <input type="email" placeholder="Adresse email" name="email" required />
+        <input className="membership-input" type="tel" placeholder="Numéro de téléphone" name="phone" pattern="[0-9]{10}" maxLength={10} required />
+        <input className="membership-input" type="email" placeholder="Adresse email" name="email" required />
         <fieldset>
           <legend>J'accepte de partager, avec les autres adhérents :</legend>
-          <label htmlFor="phoneSharing">
-            <input type="checkbox" id="phoneSharing" name="phoneSharing" value={1} />
-            Mon numéro de téléphone
-          </label>
-          <label htmlFor="emailSharing">
-            <input type="checkbox" id="emailSharing" name="emailSharing" value={1} />
-            Mon adresse mail
-          </label>
+          <div className="contact__checkbox">
+            <label htmlFor="phoneSharing">
+              <input type="checkbox" id="phoneSharing" name="phoneSharing" value={1} />
+              Mon numéro de téléphone
+            </label>
+            <label htmlFor="emailSharing">
+              <input type="checkbox" id="emailSharing" name="emailSharing" value={1} />
+              Mon adresse mail
+            </label>
+          </div>
         </fieldset>
       </div>
 
-      <div className="form-basket">
-        <h3>Option Panier</h3>
+      <div className="basket">
+        <h3 className="section-title">Option Panier</h3>
         <div className="form-underline" />
-        <div className="add-basket">+ Panier</div>
-        <h4>Taille</h4>
-        <label htmlFor="basketType">
-          <input type="radio" name="basketType" id="basketType" value={2} checked />
-          Panier
-        </label>
-        <label htmlFor="basketType">
-          <input type="radio" name="basketType" id="basketType" value={1} />
-          Demi-Panier
-        </label>
-        <h4>Durée de la formule</h4>
-        <label htmlFor="duration">
-          <input type="radio" name="duration" id="duration" value={1} checked />
-          1 mois (soit 4 paniers)
-        </label>
-        <label htmlFor="duration">
-          <input type="radio" name="duration" id="duration" value={5} />
-          5 mois (soit 20 paniers)
-        </label>
-        <label htmlFor="duration">
-          <input type="radio" name="duration" id="duration" value={10} />
-          10 mois (soit 40 paniers)
-        </label>
-        <p>Montant de la formule panier : ...€</p>
+        <div className="basket__add">+ Panier</div>
+        <div className="basket__size">
+          <h4 className="section-subtitle">Taille</h4>
+          <label htmlFor="basketType">
+            <input type="radio" name="basketType" id="basketType" value={2} defaultChecked />
+            Panier
+          </label>
+          <label htmlFor="basketType">
+            <input type="radio" name="basketType" id="basketType" value={1} />
+            Demi-Panier
+          </label>
+        </div>
+        <div className="basket__duration">
+          <h4 className="section-subtitle">Durée de la formule</h4>
+          <label htmlFor="duration">
+            <input type="radio" name="duration" id="duration" value={1} defaultChecked />
+            1 mois (soit 4 paniers)
+          </label>
+          <label htmlFor="duration">
+            <input type="radio" name="duration" id="duration" value={5} />
+            5 mois (soit 20 paniers)
+          </label>
+          <label htmlFor="duration">
+            <input type="radio" name="duration" id="duration" value={10} />
+            10 mois (soit 40 paniers)
+          </label>
+        </div>
+        <p className="basket__amount">Montant de la formule panier : 50 €</p>
       </div>
 
       <div className="payment">
-        <h3>Réglement</h3>
-        <div>
+
+        <h3 className="section-title">Réglement</h3>
+        <div className="form-underline" />
+
+        <div className="payment__type">
           <label htmlFor="paymentType">
-            <input type="radio" name="paymentType" id="paymentType" value={0} checked />
-            Chèque
+            <input type="radio" name="paymentType" id="paymentType" value={0} defaultChecked />
+            Espèce
           </label>
           <label htmlFor="paymentType">
             <input type="radio" name="paymentType" id="paymentType" value={1} />
-            Espèce
+            Chéque
           </label>
         </div>
-        <div>
+
+        <div className="payment__choice">
           <label htmlFor="choice">
-            <input type="radio" name="choice" id="choice" value={0} checked />
+            <input type="radio" name="choice" id="choice" value={0} defaultChecked />
             Total
           </label>
           <label htmlFor="choice">
             <input type="radio" name="choice" id="choice" value={1} />
             Mensuel
           </label>
-          <div>
-            <label htmlFor="choice">
+          <div className="payment__choice">
+            <label htmlFor="choice" className="choice-custom">
               <input type="radio" name="choice" id="choice" value={2} />
               Personnalisé
             </label>
-            <label htmlFor="nberCheck">
-              Nombre de chèques
-              <input type="text" name="nberCheck" id="nberCheck" />
-            </label>
-            <label htmlFor="amount">
-              Montant
-              <input type="text" name="amount" id="amount" />
-            </label>
-            <label htmlFor="donation">
-              Don (optionnel)
-              <input type="number" name="donation" id="donation" />
-            </label>
+            <input type="text" name="nberCheck" id="nberCheck" placeholder="Nombres de chéques" className="membership-input" />
+            <input type="number" name="amount" id="amount" placeholder="Montant (en euros)" className="membership-input" />
           </div>
         </div>
+
+        <div className="payment__donation">
+          <h4 className="section-subtitle">Don (optionnel)</h4>
+          <input type="number" name="donation" id="donation" placeholder="En euros" className="membership-input" />
+        </div>
+
       </div>
 
       <div className="password">
-        <label htmlFor="password">
-          Choisissez votre mot de passe
-          <input type="password" name="password" id="password" required />
-        </label>
-        <label htmlFor="password">
-          Vérifiez votre mot de passe
-          <input type="password" id="password" required />
-        </label>
+
+        <h3 className="section-title">Authentification</h3>
+        <div className="form-underline" />
+
+        <input type="password" name="password" id="password" placeholder="Votre mot de passe" className="membership-input" required />
+        <input type="password" id="password" placeholder="Vérification mot de passe" className="membership-input" required />
+
       </div>
 
       <div className="summary">
