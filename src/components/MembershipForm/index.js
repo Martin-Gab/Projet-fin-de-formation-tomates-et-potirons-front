@@ -13,6 +13,12 @@ const MembershipForm = () => {
   const address = useSelector((state) => state.membership.address);
   const zipCode = useSelector((state) => state.membership.zipCode);
   const city = useSelector((state) => state.membership.city);
+  const phone = useSelector((state) => state.membership.phone);
+  const email = useSelector((state) => state.membership.email);
+  const phoneSharing = useSelector((state) => state.membership.phoneSharing);
+  const phoneSharingChecked = useSelector((state) => state.membership.phoneSharingChecked);
+  const emailSharing = useSelector((state) => state.membership.emailSharing);
+  const emailSharingChecked = useSelector((state) => state.membership.emailSharingChecked);
 
   return (
     <div className="form">
@@ -88,17 +94,67 @@ const MembershipForm = () => {
         <div className="contact">
           <h3 className="section-title">Contact</h3>
           <div className="form-underline" />
-          <input className="membership-input" type="tel" placeholder="Numéro de téléphone" name="phone" pattern="[0-9]{10}" maxLength={10} required />
-          <input className="membership-input" type="email" placeholder="Adresse email" name="email" required />
+          <input
+            className="membership-input"
+            type="tel"
+            placeholder="Numéro de téléphone"
+            name="phone"
+            pattern="[0-9]{10}"
+            maxLength={10}
+            value={phone}
+            onChange={(evt) => {
+              dispatch(changeInput(evt.target.value, 'phone'));
+            }}
+            required
+          />
+          <input
+            className="membership-input"
+            type="email"
+            placeholder="Adresse email"
+            name="email"
+            value={email}
+            onChange={(evt) => {
+              dispatch(changeInput(evt.target.value, 'email'));
+            }}
+            required
+          />
           <fieldset>
             <legend>J'accepte de partager, avec les autres adhérents :</legend>
             <div className="contact__checkbox">
               <label htmlFor="phoneSharing">
-                <input type="checkbox" id="phoneSharing" name="phoneSharing" value={1} />
+                <input
+                  type="checkbox"
+                  id="phoneSharing"
+                  name="phoneSharing"
+                  checked={phoneSharingChecked}
+                  value={phoneSharing}
+                  onChange={(evt) => {
+                    if (evt.target.value === '0') {
+                      dispatch(changeInput(1, 'phoneSharing'));
+                    }
+                    else {
+                      dispatch(changeInput(0, 'phoneSharing'));
+                    }
+                  }}
+                />
                 Mon numéro de téléphone
               </label>
               <label htmlFor="emailSharing">
-                <input type="checkbox" id="emailSharing" name="emailSharing" value={1} />
+                <input
+                  type="checkbox"
+                  id="emailSharing"
+                  name="emailSharing"
+                  value={emailSharing}
+                  checked={emailSharingChecked}
+                  onChange={(evt) => {
+                    if (evt.target.value === '0') {
+                      dispatch(changeInput(1, 'emailSharing'));
+                    }
+                    else {
+                      dispatch(changeInput(0, 'emailSharing'));
+                    }
+                  }}
+                />
                 Mon adresse mail
               </label>
             </div>

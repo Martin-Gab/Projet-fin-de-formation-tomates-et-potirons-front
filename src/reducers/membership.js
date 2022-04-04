@@ -8,6 +8,12 @@ export const initialState = {
   address: '',
   zipCode: '',
   city: '',
+  phone: '',
+  email: '',
+  phoneSharingChecked: false,
+  phoneSharing: 0,
+  emailSharingChecked: false,
+  emailSharing: 0,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -42,6 +48,32 @@ const reducer = (state = initialState, action = {}) => {
           return {
             ...state,
             city: action.value,
+          };
+
+        case 'phone':
+          return {
+            ...state,
+            phone: action.value,
+          };
+
+        case 'email':
+          return {
+            ...state,
+            email: action.value,
+          };
+
+        case 'phoneSharing':
+          return {
+            ...state,
+            phoneSharing: action.value,
+            phoneSharingChecked: !state.phoneSharingChecked,
+          };
+
+        case 'emailSharing':
+          return {
+            ...state,
+            emailSharing: action.value,
+            emailSharingChecked: !state.emailSharingChecked,
           };
 
         default:
