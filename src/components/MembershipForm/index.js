@@ -32,6 +32,8 @@ const MembershipForm = () => {
   const nberCheck = useSelector((state) => state.membership.nberCheck);
   const amount = useSelector((state) => state.membership.amount);
   const donation = useSelector((state) => state.membership.donation);
+  const password = useSelector((state) => state.membership.password);
+  const passwordVerification = useSelector((state) => state.membership.passwordVerification);
 
   return (
     <div className="form">
@@ -313,8 +315,29 @@ const MembershipForm = () => {
           <h3 className="section-title">Authentification</h3>
           <div className="form-underline" />
 
-          <input type="password" name="password" id="password" placeholder="Votre mot de passe" className="membership-input" required />
-          <input type="password" id="password" placeholder="Vérification mot de passe" className="membership-input" required />
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Votre mot de passe"
+            className="membership-input"
+            required
+            value={password}
+            onChange={(evt) => {
+              dispatch(changeInput(evt.target.value, 'password'));
+            }}
+          />
+          <input
+            type="password"
+            id="password"
+            placeholder="Vérification mot de passe"
+            className="membership-input"
+            required
+            value={passwordVerification}
+            onChange={(evt) => {
+              dispatch(changeInput(evt.target.value, 'passwordCheck'));
+            }}
+          />
 
         </div>
 

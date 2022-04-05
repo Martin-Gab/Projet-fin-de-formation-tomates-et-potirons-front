@@ -31,6 +31,8 @@ export const initialState = {
   nberCheck: '',
   amount: '',
   donation: '',
+  password: '',
+  passwordVerification: '',
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -183,6 +185,18 @@ const reducer = (state = initialState, action = {}) => {
           return {
             ...state,
             donation: action.value,
+          };
+
+        case 'password':
+          return {
+            ...state,
+            password: action.value,
+          };
+
+        case 'passwordCheck':
+          return {
+            ...state,
+            passwordVerification: action.value,
           };
 
         default:
