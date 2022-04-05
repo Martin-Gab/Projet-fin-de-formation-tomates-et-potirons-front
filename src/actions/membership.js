@@ -4,6 +4,7 @@
 export const CHANGE_INPUT = 'CHANGE_INPUT';
 export const TOGGLE_BASKET_OPTION = 'TOGGLE_BASKET_OPTION';
 export const CLOSE_FORM = 'CLOSE_FORM';
+export const SUBMIT_MEMBERSHIP = 'SUBMIT_MEMBERSHIP';
 
 // Action Creators
 export const changeInput = (newValue, fieldName) => ({
@@ -19,4 +20,8 @@ export const toggleBasketOption = (onOrOff) => ({
 
 export const closeForm = () => ({
   type: CLOSE_FORM,
+});
+
+export const submitMembership = () => ({
+  type: SUBMIT_MEMBERSHIP,
 });
