@@ -32,12 +32,17 @@
     max-width: 80%;
     max-height: calc(100vh - 5rem);
     overflow-y: scroll;
-    margin: 5rem auto 0;
     background-color: vars.$primaryLightColor;
     padding: vars.$formGutter;
     text-align: center;
-    position: relative;
+    position: absolute;
     border-radius: 10px;
+    box-shadow: 0px 0px 12px 6px rgba(158,150,157,0.73);
+    top: 5rem;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
 
     .close-form {
         position: absolute;

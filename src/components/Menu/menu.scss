@@ -1,7 +1,9 @@
 // stylesheet for menu
+@use 'src/styles/vars';
 
 .menu-wrapper {
-    height: 5rem;
+    box-sizing: border-box;
+    height: vars.$menuHeight;
     padding: 1.5rem;
     display: flex;
     justify-content: space-between;
