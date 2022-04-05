@@ -123,13 +123,31 @@ const reducer = (state = initialState, action = {}) => {
       }
 
     case TOGGLE_BASKET_OPTION:
-      // TODO Faire le toggle fermeture
-      return {
-        ...state,
-        basketOption: !state.basketOption,
-        basketType: 2,
-        duration: 1,
-      };
+      switch (action.toggle) {
+        case 'on':
+          return {
+            ...state,
+            basketOption: true,
+            basketType: 2,
+            duration: 1,
+          };
+
+        case 'off':
+          return {
+            ...state,
+            basketOption: false,
+            basketType: 0,
+            duration: 0,
+            basketFull: true,
+            basketHalf: false,
+            oneMonthChecked: true,
+            fiveMonthChecked: false,
+            tenMonthChecked: false,
+          };
+
+        default:
+          return state;
+      }
 
     default:
       return state;

@@ -23,6 +23,7 @@ const MembershipForm = () => {
   const phoneSharingChecked = useSelector((state) => state.membership.phoneSharingChecked);
   const emailSharing = useSelector((state) => state.membership.emailSharing);
   const emailSharingChecked = useSelector((state) => state.membership.emailSharingChecked);
+  const basketType = useSelector((state) => state.membership.basketType);
 
   return (
     <div className="form">
@@ -171,7 +172,12 @@ const MembershipForm = () => {
           <div
             className="basket__add"
             onClick={() => {
-              dispatch(toggleBasketOption());
+              if (basketType === 1 || basketType === 2) {
+                dispatch(toggleBasketOption('off'));
+              }
+              else {
+                dispatch(toggleBasketOption('on'));
+              }
             }}
           >
             + Panier

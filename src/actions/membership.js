@@ -11,6 +11,7 @@ export const changeInput = (newValue, fieldName) => ({
   field: fieldName,
 });
 
-export const toggleBasketOption = () => ({
+export const toggleBasketOption = (onOrOff) => ({
   type: TOGGLE_BASKET_OPTION,
+  toggle: onOrOff,
 });
