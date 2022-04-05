@@ -3,7 +3,7 @@
 // local imports
 import './membership-form.scss';
 import { useSelector, useDispatch } from 'react-redux';
-import { changeInput, toggleBasketOption } from 'src/actions/membership';
+import { changeInput, toggleBasketOption, closeForm } from 'src/actions/membership';
 
 import BasketOption from './basketOption';
 
@@ -37,7 +37,12 @@ const MembershipForm = () => {
 
   return (
     <div className="form">
-      <div className="close-form">
+      <div
+        className="close-form"
+        onClick={() => {
+          dispatch(closeForm());
+        }}
+      >
         X
       </div>
       <h1 className="form__title">Formulaire d'adhésion à l'AMAP</h1>

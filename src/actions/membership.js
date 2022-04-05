@@ -3,6 +3,7 @@
 // Action Types
 export const CHANGE_INPUT = 'CHANGE_INPUT';
 export const TOGGLE_BASKET_OPTION = 'TOGGLE_BASKET_OPTION';
+export const CLOSE_FORM = 'CLOSE_FORM';
 
 // Action Creators
 export const changeInput = (newValue, fieldName) => ({
@@ -14,4 +15,8 @@ export const changeInput = (newValue, fieldName) => ({
 export const toggleBasketOption = (onOrOff) => ({
   type: TOGGLE_BASKET_OPTION,
   toggle: onOrOff,
+});
+
+export const closeForm = () => ({
+  type: CLOSE_FORM,
 });
