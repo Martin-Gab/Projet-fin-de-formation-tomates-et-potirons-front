@@ -17,3 +17,34 @@
         cursor: pointer;
     }
 }
+
+.burger-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: vars.$primaryColorBurgerMenu;
+    padding: vars.$paddingBurgerMenu;
+
+    &__links {
+        margin-bottom: .5rem;
+    }
+
+    .connect-cta {
+        background-color: vars.$primaryColor;
+        padding: vars.$buttonCtaPadding;
+        border-radius: vars.$buttonCtaRadius;
+        color: vars.$whiteText;
+        font-weight: vars.$mediumWeight;
+
+        &:hover {
+            background-color: vars.$whiteText;
+            color: vars.$primaryColor;
+        }
+    }
+}
+
+@media screen and (min-width: 700px) {
+    .menu-burger {
+        display: none;
+    }
+}
