@@ -1,14 +1,22 @@
-// == Import
-import reactLogo from './react-logo.svg';
-import './styles.css';
+// == Local Import
+import './styles.scss';
+
+// Components Import
+import MembershipForm from 'src/components/MembershipForm';
+
+// Npm Import
+import { useSelector } from 'react-redux';
 
 // == Composant
-const App = () => (
-  <div className="app">
-    <img src={reactLogo} alt="react logo" />
-    <h1>Composant : App</h1>
-  </div>
-);
+const App = () => {
+  const isOpen = useSelector((state) => state.membership.isOpen);
+
+  return (
+    <div className="app">
+      {isOpen && <MembershipForm />}
+    </div>
+  );
+};
 
 // == Export
 export default App;
