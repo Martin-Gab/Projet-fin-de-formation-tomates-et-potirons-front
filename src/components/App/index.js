@@ -2,6 +2,7 @@
 import './styles.scss';
 
 // Components Import
+import Menu from 'src/components/Menu';
 import MembershipForm from 'src/components/MembershipForm';
 
 // Npm Import
@@ -13,6 +14,7 @@ const App = () => {
 
   return (
     <div className="app">
+      <Menu />
       {isOpen && <MembershipForm />}
     </div>
   );
