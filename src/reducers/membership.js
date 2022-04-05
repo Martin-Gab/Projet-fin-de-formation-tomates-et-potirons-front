@@ -21,6 +21,16 @@ export const initialState = {
   oneMonthChecked: true,
   fiveMonthChecked: false,
   tenMonthChecked: false,
+  paymentType: 1,
+  cashOption: true,
+  checkOption: false,
+  choice: 0,
+  totalChecked: true,
+  monthlyChecked: false,
+  customChecked: false,
+  nberCheck: '',
+  amount: '',
+  donation: '',
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -118,6 +128,63 @@ const reducer = (state = initialState, action = {}) => {
             tenMonthChecked: true,
           };
 
+        case 'payment':
+          return {
+            ...state,
+            paymentType: action.value,
+            cashOption: !state.cashOption,
+            checkOption: !state.checkOption,
+            choice: 0,
+            totalChecked: true,
+            monthlyChecked: false,
+            customChecked: false,
+          };
+
+        case 'totalPayment':
+          return {
+            ...state,
+            choice: action.value,
+            totalChecked: true,
+            monthlyChecked: false,
+            customChecked: false,
+          };
+
+        case 'monthlyPayment':
+          return {
+            ...state,
+            choice: action.value,
+            totalChecked: false,
+            monthlyChecked: true,
+            customChecked: false,
+          };
+
+        case 'customPayment':
+          return {
+            ...state,
+            choice: action.value,
+            totalChecked: false,
+            monthlyChecked: false,
+            customChecked: true,
+          };
+
+        case 'numberCheck':
+          return {
+            ...state,
+            nberCheck: action.value,
+          };
+
+        case 'amount':
+          return {
+            ...state,
+            amount: action.value,
+          };
+
+        case 'donation':
+          return {
+            ...state,
+            donation: action.value,
+          };
+
         default:
           return state;
       }
@@ -143,6 +210,10 @@ const reducer = (state = initialState, action = {}) => {
             oneMonthChecked: true,
             fiveMonthChecked: false,
             tenMonthChecked: false,
+            choice: 0,
+            totalChecked: true,
+            monthlyChecked: false,
+            customChecked: false,
           };
 
         default:

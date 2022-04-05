@@ -24,6 +24,14 @@ const MembershipForm = () => {
   const emailSharing = useSelector((state) => state.membership.emailSharing);
   const emailSharingChecked = useSelector((state) => state.membership.emailSharingChecked);
   const basketType = useSelector((state) => state.membership.basketType);
+  const cashOption = useSelector((state) => state.membership.cashOption);
+  const checkOption = useSelector((state) => state.membership.checkOption);
+  const totalChecked = useSelector((state) => state.membership.totalChecked);
+  const monthlyChecked = useSelector((state) => state.membership.monthlyChecked);
+  const customChecked = useSelector((state) => state.membership.customChecked);
+  const nberCheck = useSelector((state) => state.membership.nberCheck);
+  const amount = useSelector((state) => state.membership.amount);
+  const donation = useSelector((state) => state.membership.donation);
 
   return (
     <div className="form">
@@ -193,37 +201,109 @@ const MembershipForm = () => {
 
           <div className="payment__type">
             <label htmlFor="paymentType">
-              <input type="radio" name="paymentType" id="paymentType" value={0} defaultChecked />
+              <input
+                type="radio"
+                name="paymentType"
+                id="paymentType"
+                checked={cashOption}
+                onChange={() => {
+                  dispatch(changeInput(1, 'payment'));
+                }}
+              />
               Espèce
             </label>
             <label htmlFor="paymentType">
-              <input type="radio" name="paymentType" id="paymentType" value={1} />
+              <input
+                type="radio"
+                name="paymentType"
+                id="paymentType"
+                checked={checkOption}
+                onChange={() => {
+                  dispatch(changeInput(0, 'payment'));
+                }}
+              />
               Chéque
             </label>
           </div>
 
           <div className="payment__choice">
             <label htmlFor="choice">
-              <input type="radio" name="choice" id="choice" value={0} defaultChecked />
+              <input
+                type="radio"
+                name="choice"
+                id="choice"
+                checked={totalChecked}
+                onChange={() => {
+                  dispatch(changeInput(0, 'totalPayment'));
+                }}
+              />
               Total
             </label>
             <label htmlFor="choice">
-              <input type="radio" name="choice" id="choice" value={1} />
+              <input
+                type="radio"
+                name="choice"
+                id="choice"
+                checked={monthlyChecked}
+                onChange={() => {
+                  dispatch(changeInput(1, 'monthlyPayment'));
+                }}
+              />
               Mensuel
             </label>
-            <div className="payment__choice">
-              <label htmlFor="choice" className="choice-custom">
-                <input type="radio" name="choice" id="choice" value={2} />
-                Personnalisé
-              </label>
-              <input type="text" name="nberCheck" id="nberCheck" placeholder="Nombres de chéques" className="membership-input" />
-              <input type="number" name="amount" id="amount" placeholder="Montant (en euros)" className="membership-input" />
-            </div>
+            {checkOption && basketOption && (
+              <div className="payment__choice">
+                <label htmlFor="choice" className="choice-custom">
+                  <input
+                    type="radio"
+                    name="choice"
+                    id="choice"
+                    checked={customChecked}
+                    onChange={() => {
+                      dispatch(changeInput(2, 'customPayment'));
+                    }}
+                  />
+                  Personnalisé
+                </label>
+                <input
+                  type="number"
+                  name="nberCheck"
+                  id="nberCheck"
+                  placeholder="Nombres de chéques"
+                  className="membership-input"
+                  value={nberCheck}
+                  onChange={(evt) => {
+                    dispatch(changeInput(evt.target.value, 'numberCheck'));
+                  }}
+                />
+                <input
+                  type="number"
+                  name="amount"
+                  id="amount"
+                  placeholder="Montant (en euros)"
+                  className="membership-input"
+                  value={amount}
+                  onChange={(evt) => {
+                    dispatch(changeInput(evt.target.value, 'amount'));
+                  }}
+                />
+              </div>
+            )}
           </div>
 
           <div className="payment__donation">
             <h4 className="section-subtitle">Don (optionnel)</h4>
-            <input type="number" name="donation" id="donation" placeholder="En euros" className="membership-input" />
+            <input
+              type="number"
+              name="donation"
+              id="donation"
+              placeholder="En euros"
+              className="membership-input"
+              value={donation}
+              onChange={(evt) => {
+                dispatch(changeInput(evt.target.value, 'donation'));
+              }}
+            />
           </div>
 
         </div>
