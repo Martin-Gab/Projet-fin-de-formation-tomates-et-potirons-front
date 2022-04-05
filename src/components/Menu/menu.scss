@@ -1,1 +1,17 @@
 // stylesheet for menu
+
+.menu-wrapper {
+    height: 5rem;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .main-logo {
+        width: 70px;
+    }
+
+    .menu-burger {
+        cursor: pointer;
+    }
+}
