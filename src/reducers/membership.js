@@ -1,7 +1,7 @@
 import { CHANGE_INPUT, TOGGLE_BASKET_OPTION, CLOSE_FORM } from 'src/actions/membership';
 
 export const initialState = {
-  isOpen: true,
+  isOpen: false,
   basketOption: false,
   firstName: '',
   lastName: '',
