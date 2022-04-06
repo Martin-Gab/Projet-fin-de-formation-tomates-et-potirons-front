@@ -24,7 +24,8 @@ const Menu = () => {
             dispatch(toggleBurgerMenu());
           }}
         >
-          <FeatherIcon icon="menu" size={36} className="menu-burger" />
+          {/* Si burgerMenu est true on affiche une croix autrement on affiche l'icône burger */}
+          <FeatherIcon icon={burgerMenu ? 'x' : 'menu'} size={36} className="menu-burger" />
         </div>
       </div>
       {burgerMenu && <BurgerMenu />}
