@@ -4,6 +4,7 @@ import './styles.scss';
 // Components Import
 import Menu from 'src/components/Menu';
 import Home from 'src/components/Home';
+import Footer from 'src/components/Footer';
 import MembershipForm from 'src/components/MembershipForm';
 
 // Npm Import
@@ -17,6 +18,7 @@ const App = () => {
     <div className="app">
       <Menu />
       <Home />
+      <Footer />
       {isOpen && <MembershipForm />}
     </div>
   );
