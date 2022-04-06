@@ -13,7 +13,7 @@ const membershipMiddleware = (store) => (next) => (action) => {
     case SUBMIT_MEMBERSHIP:
       axios.post(
         // URL
-        'http://localhost:xxxx/registry',
+        'http://0.0.0.0:8000/api/registry',
         // Données
         {
           firstName: store.getState().membership.firstName,
