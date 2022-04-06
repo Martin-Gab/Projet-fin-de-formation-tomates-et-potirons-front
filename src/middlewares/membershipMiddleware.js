@@ -13,33 +13,37 @@ const membershipMiddleware = (store) => (next) => (action) => {
     case SUBMIT_MEMBERSHIP:
       axios.post(
         // URL
-        'http://0.0.0.0:8000/api/registry',
+        'http://localhost:8000/api/registry',
         // Données
         {
           firstName: store.getState().membership.firstName,
           lastName: store.getState().membership.lastName,
           address: store.getState().membership.address,
-          zipCode: store.getState().membership.zipCode,
+          zipCode: Number(store.getState().membership.zipCode),
           city: store.getState().membership.city,
-          phone: store.getState().membership.phone,
+          phone: Number(store.getState().membership.phone),
           email: store.getState().membership.email,
           phoneSharing: store.getState().membership.phoneSharing,
           emailSharing: store.getState().membership.emailSharing,
-          basketType: store.getState().membership.basketType,
-          duration: store.getState().membership.duration,
           paymentType: store.getState().membership.paymentType,
-          choice: store.getState().membership.choice,
-          nberCheck: store.getState().membership.nberCheck,
-          amount: store.getState().membership.amount,
-          donation: store.getState().membership.donation,
           password: store.getState().membership.password,
+          role: 0,
+          membership_status: 0,
+          formule: {
+            basketType: store.getState().membership.basketType,
+            duration: store.getState().membership.duration,
+            choice: store.getState().membership.choice,
+            nberCheck: Number(store.getState().membership.nberCheck),
+            amount: store.getState().membership.amount === '' ? null : store.getState().membership.amount,
+          },
+          donation: Number(store.getState().membership.donation),
         },
       )
         .then((response) => {
           console.log(response);
         })
         .catch((error) => {
-          console.log(error);
+          console.log(error.response.data);
         });
       break;
 

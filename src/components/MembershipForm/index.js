@@ -53,7 +53,7 @@ const MembershipForm = () => {
       <h1 className="form__title">Formulaire d'adhésion à l'AMAP</h1>
 
       <form
-        action=""
+        action="POST"
         onSubmit={(evt) => {
           evt.preventDefault();
           dispatch(submitMembership());
