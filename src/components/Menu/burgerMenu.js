@@ -1,11 +1,11 @@
 // BurgerMenu Component
 
 // NPM Imports
-import FeatherIcon from 'feather-icons-react';
+import { ChevronDown } from 'react-feather';
 
 const BurgerMenu = () => (
   <nav className="burger-menu">
-    <a href="#" className="burger-menu__links">Nos Activités <FeatherIcon icon="chevron-down" /></a>
+    <a href="#" className="burger-menu__links">Nos Activités <ChevronDown size={16} /></a>
     <a href="#" className="burger-menu__links">Vos Maraîchers</a>
     <a href="#" className="burger-menu__links">Notre Agriculture</a>
     <div className="burger-menu__links connect-cta">Mon Espace</div>

@@ -4,7 +4,7 @@
 import './footer.scss';
 
 // NPM Imports
-import FeatherIcon from 'feather-icons-react';
+import { Facebook, Instagram } from 'react-feather';
 
 const Footer = () => (
   <footer>
@@ -29,10 +29,10 @@ const Footer = () => (
       <div className="socials">
         <h2 className="footer-title">Nos Réseaux</h2>
         <a href="https://www.facebook.com/tomatesetpotirons" target="_blank" rel="noreferrer">
-          <FeatherIcon icon="facebook" className="socials__links" />
+          <Facebook size={36} className="socials__links" />
         </a>
         <a href="https://instagram.com/tomates_et_potirons?utm_medium=copy_link" target="_blank" rel="noreferrer">
-          <FeatherIcon icon="instagram" className="socials__links" />
+          <Instagram size={36} className="socials__links" />
         </a>
       </div>
       <div className="legals">

@@ -1,7 +1,7 @@
 // Menu Component
 
 // Package Imports
-import FeatherIcon from 'feather-icons-react';
+import { Menu as BurgerIcon, X } from 'react-feather';
 import { useDispatch, useSelector } from 'react-redux';
 
 // Local Imports
@@ -25,7 +25,7 @@ const Menu = () => {
           }}
         >
           {/* Si burgerMenu est true on affiche une croix autrement on affiche l'icône burger */}
-          <FeatherIcon icon={burgerMenu ? 'x' : 'menu'} size={36} className="menu-burger" />
+          {burgerMenu ? <X size={36} /> : <BurgerIcon size={36} />}
         </div>
       </div>
       {burgerMenu && <BurgerMenu />}
