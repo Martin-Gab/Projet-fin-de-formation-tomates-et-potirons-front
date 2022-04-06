@@ -3,6 +3,9 @@
 // Local Imports
 import './footer.scss';
 
+// NPM Imports
+import FeatherIcon from 'feather-icons-react';
+
 const Footer = () => (
   <footer>
     <div className="contact">
@@ -15,15 +18,28 @@ const Footer = () => (
     </div>
     <div className="navigation">
       <h2 className="footer-title">Navigation</h2>
-      <a href="#">Accueil</a>
-      <a href="#">Vente Direct</a>
-      <a href="#">AMAP</a>
-      <a href="#">Nos Partenaires</a>
-      <a href="#">Vos Maraîchers</a>
-      <a href="#">Notre Agriculture</a>
+      <a href="#" className="footer-links">Accueil</a>
+      <a href="#" className="footer-links">Vente Direct</a>
+      <a href="#" className="footer-links">AMAP</a>
+      <a href="#" className="footer-links">Nos Partenaires</a>
+      <a href="#" className="footer-links">Vos Maraîchers</a>
+      <a href="#" className="footer-links">Notre Agriculture</a>
     </div>
     <div className="other">
-      <h2>Nos Réseaux</h2>
+      <div className="socials">
+        <h2 className="footer-title">Nos Réseaux</h2>
+        <a href="https://www.facebook.com/tomatesetpotirons" target="_blank" rel="noreferrer">
+          <FeatherIcon icon="facebook" className="socials__links" />
+        </a>
+        <a href="https://instagram.com/tomates_et_potirons?utm_medium=copy_link" target="_blank" rel="noreferrer">
+          <FeatherIcon icon="instagram" className="socials__links" />
+        </a>
+      </div>
+      <div className="legals">
+        <h2 className="footer-title">Legals</h2>
+        <a href="#" className="footer-links">Conditions Générales d'utilisation</a>
+        <a href="#" className="footer-links">Mentions Légales</a>
+      </div>
     </div>
   </footer>
 );

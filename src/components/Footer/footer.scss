@@ -1,3 +1,56 @@
 // Stylesheet for Footer
 
 @use 'src/styles/vars';
+
+footer {
+    background-color: vars.$primaryColor;
+    padding: vars.$footerGutter;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: vars.$whiteText;
+}
+
+.footer-title {
+    font-size: vars.$footerTitleFontSize;
+    font-weight: vars.$mediumWeight;
+    margin-bottom: .8rem;
+}
+
+.footer-links {
+    display: block;
+    margin-bottom: .1rem;
+    text-decoration: underline;
+
+    &:hover {
+        color: lightblue;
+    }
+}
+
+.contact {
+    text-align: center;
+    margin-bottom: .8rem;
+
+    &__infos {
+        margin-bottom: .1rem;
+    }
+}
+
+.navigation {
+    margin-bottom: .8rem;
+    text-align: center;
+}
+
+.other {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    .socials {
+        margin-bottom: .8rem;
+
+        &__links {
+            margin-right: .5rem;
+        }
+    }
+}
