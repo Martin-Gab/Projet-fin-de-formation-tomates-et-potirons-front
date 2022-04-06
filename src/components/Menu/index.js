@@ -3,6 +3,7 @@
 // Package Imports
 import { Menu as BurgerIcon, X } from 'react-feather';
 import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
 // Local Imports
 import './menu.scss';
@@ -18,7 +19,11 @@ const Menu = () => {
   return (
     <header>
       <div className="menu-wrapper">
-        <img src={logo} alt="Le logo de tomates et potirons" className="main-logo" />
+        <NavLink
+          to="/"
+        >
+          <img src={logo} alt="Le logo de tomates et potirons" className="main-logo" />
+        </NavLink>
         <div
           onClick={() => {
             dispatch(toggleBurgerMenu());

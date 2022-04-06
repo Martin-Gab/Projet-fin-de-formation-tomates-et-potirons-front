@@ -1,14 +1,15 @@
-// == Local Import
+// == Local Imports
 import './styles.scss';
 
-// Components Import
+// Components Imports
 import Menu from 'src/components/Menu';
 import Home from 'src/components/Home';
 import Footer from 'src/components/Footer';
 import MembershipForm from 'src/components/MembershipForm';
 
-// Npm Import
+// Packages Imports
 import { useSelector } from 'react-redux';
+import { Routes, Route } from 'react-router-dom';
 
 // == Composant
 const App = () => {
@@ -17,7 +18,9 @@ const App = () => {
   return (
     <div className="app">
       <Menu />
-      <Home />
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
       <Footer />
       {isOpen && <MembershipForm />}
     </div>
