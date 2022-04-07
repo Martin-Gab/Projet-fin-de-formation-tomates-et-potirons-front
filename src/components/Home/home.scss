@@ -1,6 +1,22 @@
 // Stylesheet for Homepage
 @use 'src/styles/vars';
 
+.global-cta {
+    display: inline-block;
+    background-color: vars.$primaryColor;
+    color: vars.$whiteText;
+    font-weight: vars.$mediumWeight;
+    border: 1px solid vars.$primaryColor;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: vars.$whiteText;
+        color: vars.$primaryColor;
+    }
+}
+
 .homepage {
     padding: 0 2rem;
     margin: 0 auto;
@@ -41,22 +57,6 @@
         &__description {
             margin-bottom: 1rem;
         }
-
-        &__cta {
-            display: inline-block;
-            background-color: vars.$primaryColor;
-            color: vars.$whiteText;
-            font-weight: vars.$mediumWeight;
-            border: 1px solid vars.$primaryColor;
-            padding: 1rem 2rem;
-            border-radius: 10px;
-            cursor: pointer;
-
-            &:hover {
-                background-color: vars.$whiteText;
-                color: vars.$primaryColor;
-            }
-        }
     }
 
     .cards {
@@ -69,6 +69,8 @@
             width: 300px;
             height: 400px;
             margin-bottom: 1rem;
+            border-radius: 10px;
+            overflow: hidden;
 
             .card {
                 position: absolute;
@@ -88,20 +90,39 @@
                     backface-visibility: hidden;
                     background: vars.$primaryColor;
                     display: flex;
+                    flex-direction: column;
                     justify-content: center;
                     align-items: center;
+
+                    &-title {
+                        font-size: vars.$cardTitleFontSize;
+                        font-weight: vars.$boldWeight;
+                        color: vars.$whiteText;
+                        margin-bottom: 1.5rem;
+                    }
+
+                    &-image {
+                        width: 90%;
+                    }
                 }
 
                 &__back {
                     position: absolute;
                     width: 100%;
                     height: 100%;
+                    padding: 2rem;
+                    text-align: center;
                     backface-visibility: hidden;
                     background: vars.$primaryLightColor;
                     display: flex;
+                    flex-direction: column;
                     justify-content: center;
                     align-items: center;
                     transform: rotateY(180deg);
+
+                    &-description {
+                        margin-bottom: 1.5rem;
+                    }
                 }
             }
         }
