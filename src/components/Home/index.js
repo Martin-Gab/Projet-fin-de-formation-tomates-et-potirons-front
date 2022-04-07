@@ -7,43 +7,58 @@ import amapImage from 'src/assets/images/dummy-amap.jpg';
 
 // Packages Imports
 import { NavLink } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
-const Home = () => (
-  <div className="homepage">
+// Actions Imports
+import { toggleBurgerMenu } from 'src/actions/menu';
 
-    <section className="hero">
-      <h1 className="hero__title">Vos maraîchers cultivent pour vous.</h1>
-      <img src={heroBannerMobile} alt="illustration des activités de tomates et potirons" className="hero__banner" />
-    </section>
+const Home = () => {
+  const dispatch = useDispatch();
 
-    <section className="amap">
-      <img src={amapImage} alt="panier de l'amap" className="amap__picture" />
-      <h1 className="amap__title">Notre Amap</h1>
-      <p className="amap__description">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Ipsam saepe ad quasi placeat quam sit,
-        suscipit minus facere doloremque voluptatum tempore animi.
-        Debitis ad nemo obcaecati ut repellendus id voluptatem!
-      </p>
-      <NavLink className="amap__cta" to="/nos-activites/amap">En savoir plus</NavLink>
-    </section>
+  useEffect(
+    () => {
+      dispatch(toggleBurgerMenu());
+    },
+  );
 
-    <section className="cards">
-      <div className="card-container">
-        <div className="card">
-          <div className="card__front">Front of the card</div>
-          <div className="card__back">Back of the card</div>
+  return (
+    <div className="homepage">
+
+      <section className="hero">
+        <h1 className="hero__title">Vos maraîchers cultivent pour vous.</h1>
+        <img src={heroBannerMobile} alt="illustration des activités de tomates et potirons" className="hero__banner" />
+      </section>
+
+      <section className="amap">
+        <img src={amapImage} alt="panier de l'amap" className="amap__picture" />
+        <h1 className="amap__title">Notre Amap</h1>
+        <p className="amap__description">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Ipsam saepe ad quasi placeat quam sit,
+          suscipit minus facere doloremque voluptatum tempore animi.
+          Debitis ad nemo obcaecati ut repellendus id voluptatem!
+        </p>
+        <NavLink className="amap__cta" to="/nos-activites/amap">En savoir plus</NavLink>
+      </section>
+
+      <section className="cards">
+        <div className="card-container">
+          <div className="card">
+            <div className="card__front">Front of the card</div>
+            <div className="card__back">Back of the card</div>
+          </div>
         </div>
-      </div>
-      <div className="card-container">
-        <div className="card">
-          <div className="card__front">Front of the card</div>
-          <div className="card__back">Back of the card</div>
+        <div className="card-container">
+          <div className="card">
+            <div className="card__front">Front of the card</div>
+            <div className="card__back">Back of the card</div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-  </div>
-);
+    </div>
+  );
+};
 
 export default Home;
