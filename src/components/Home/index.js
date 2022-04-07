@@ -5,6 +5,9 @@ import './home.scss';
 import heroBannerMobile from 'src/assets/images/hero-banner-mobile.png';
 import amapImage from 'src/assets/images/dummy-amap.jpg';
 
+// Packages Imports
+import { NavLink } from 'react-router-dom';
+
 const Home = () => (
   <div className="homepage">
 
@@ -22,7 +25,7 @@ const Home = () => (
         suscipit minus facere doloremque voluptatum tempore animi.
         Debitis ad nemo obcaecati ut repellendus id voluptatem!
       </p>
-      <div className="amap__cta">En savoir plus</div>
+      <NavLink className="amap__cta" to="/nos-activites/amap">En savoir plus</NavLink>
     </section>
 
     <section className="cards">

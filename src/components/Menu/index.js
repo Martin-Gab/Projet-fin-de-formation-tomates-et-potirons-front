@@ -19,9 +19,7 @@ const Menu = () => {
   return (
     <header>
       <div className="menu-wrapper">
-        <NavLink
-          to="/"
-        >
+        <NavLink to="/">
           <img src={logo} alt="Le logo de tomates et potirons" className="main-logo" />
         </NavLink>
         <div

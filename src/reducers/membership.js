@@ -1,4 +1,9 @@
-import { CHANGE_INPUT, TOGGLE_BASKET_OPTION, CLOSE_FORM } from 'src/actions/membership';
+import {
+  CHANGE_INPUT,
+  TOGGLE_BASKET_OPTION,
+  CLOSE_FORM,
+  OPEN_FORM,
+} from 'src/actions/membership';
 
 export const initialState = {
   isOpen: false,
@@ -233,6 +238,12 @@ const reducer = (state = initialState, action = {}) => {
         default:
           return state;
       }
+
+    case OPEN_FORM:
+      return {
+        ...state,
+        isOpen: true,
+      };
 
     case CLOSE_FORM:
       return {
