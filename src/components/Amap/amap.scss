@@ -1,0 +1,31 @@
+// Stylesheet for Amap Page
+
+@use 'src/styles/vars';
+
+.amap-page {
+    height: calc(100vh - 5rem);
+    text-align: center;
+
+    &__title {
+        font-size: vars.$mobileTitleFontSize;
+        font-weight: vars.$boldWeight;
+        color: vars.$whiteText;
+        padding: 1rem 0;
+    }
+
+    &__cta {
+        display: inline-block;
+        background-color: vars.$primaryColor;
+        color: vars.$whiteText;
+        font-weight: vars.$mediumWeight;
+        border: 1px solid vars.$primaryColor;
+        padding: 1rem 2rem;
+        border-radius: 10px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: vars.$whiteText;
+            color: vars.$primaryColor;
+        }
+    }
+}
