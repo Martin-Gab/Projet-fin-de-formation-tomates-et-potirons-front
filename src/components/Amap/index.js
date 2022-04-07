@@ -2,6 +2,8 @@
 
 // Local Imports
 import './amap.scss';
+import amapImage from 'src/assets/images/taxi-98.gif';
+
 import { openForm } from 'src/actions/membership';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
@@ -19,15 +21,30 @@ const Amap = () => {
   return (
     <main>
       <section className="amap-page">
-        <h1 className="amap-page__title">Notre Amap</h1>
-        <div
-          className="amap-page__cta"
-          onClick={() => {
-            dispatch(openForm());
-          }}
-        >
-          Adhérer à l'AMAP
+
+        <img src={amapImage} alt="illustration de l'amap" className="amap-image" />
+
+        <div className="amap-infos">
+          <h1 className="amap-infos__title">Notre Amap</h1>
+          <p className="amap-infos__description">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Alias ipsa eaque fugiat beatae quos consectetur quis, maxime saepe vitae.
+          </p>
+          <div
+            className="amap-infos__cta"
+            onClick={() => {
+              dispatch(openForm());
+            }}
+          >
+            Adhérer à l'AMAP
+          </div>
+          <div className="modal-wrapper">
+            <div className="amap-infos__modal">Charte AMAP</div>
+            <div className="amap-infos__modal">Réglement Intérieur</div>
+            <div className="amap-infos__modal">Contrat AMAP</div>
+          </div>
         </div>
+
       </section>
     </main>
   );

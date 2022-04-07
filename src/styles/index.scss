@@ -9,6 +9,17 @@ body {
   background-repeat: no-repeat;
 }
 
+main {
+  min-width: 80%;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 800px) {
+  main {
+    height: calc(100vh - 5rem);
+  }
+}
+
 /* 
   // or you can import your own font
   @font-face {
