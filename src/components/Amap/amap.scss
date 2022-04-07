@@ -73,7 +73,6 @@
 @media screen and (min-width: 800px) {
     .amap-page {
         flex-direction: row;
-        width: 70%;
 
         .amap-infos {
             text-align: right;
@@ -92,5 +91,11 @@
                 display: flex;
             }
         }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .amap-page {
+        width: 70%;
     }
 }
