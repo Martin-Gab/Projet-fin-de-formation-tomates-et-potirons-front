@@ -13,14 +13,14 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 // Actions Imports
-import { toggleBurgerMenu } from 'src/actions/menu';
+import { closeBurgerMenu } from 'src/actions/menu';
 
 const Home = () => {
   const dispatch = useDispatch();
 
   useEffect(
     () => {
-      dispatch(toggleBurgerMenu());
+      dispatch(closeBurgerMenu());
     },
     [],
   );
