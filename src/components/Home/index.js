@@ -13,14 +13,16 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 // Actions Imports
-import { closeBurgerMenu } from 'src/actions/menu';
+import { closeBurgerMenu, closeSubMenu } from 'src/actions/menu';
 
 const Home = () => {
   const dispatch = useDispatch();
 
   useEffect(
     () => {
+      window.scrollTo(0, 0);
       dispatch(closeBurgerMenu());
+      dispatch(closeSubMenu());
     },
     [],
   );

@@ -1,8 +1,15 @@
-import { TOGGLE_BURGER_MENU, TOGGLE_BURGER_SUB_MENU, CLOSE_BURGER_MENU } from 'src/actions/menu';
+import {
+  TOGGLE_BURGER_MENU,
+  TOGGLE_BURGER_SUB_MENU,
+  CLOSE_BURGER_MENU,
+  TOGGLE_SUB_MENU,
+  CLOSE_SUB_MENU,
+} from 'src/actions/menu';
 
 export const initialState = {
   burgerMenu: false,
   burgerSubMenu: false,
+  subMenu: false,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -25,6 +32,18 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         burgerMenu: false,
         burgerSubMenu: false,
+      };
+
+    case TOGGLE_SUB_MENU:
+      return {
+        ...state,
+        subMenu: !state.subMenu,
+      };
+
+    case CLOSE_SUB_MENU:
+      return {
+        ...state,
+        subMenu: false,
       };
 
     default:

@@ -43,6 +43,7 @@
         border-radius: vars.$buttonCtaRadius;
         color: vars.$whiteText;
         font-weight: vars.$mediumWeight;
+        cursor: pointer;
 
         &:hover {
             background-color: vars.$whiteText;
@@ -58,7 +59,94 @@
     width: 100%;
 }
 
+.menu {
+    display: none;
+}
+
 @media screen and (min-width: 700px) {
+    .menu-display {
+        display: inherit;
+    }
+
+    .menu {
+        display: flex;
+        align-items: center;
+
+        &__links {
+            margin-right: 1rem;
+
+            &:last-child {
+                margin-right: 0;
+            }
+
+            &:hover {
+                color: vars.$whiteText;
+            }
+
+            &--active {
+                margin-right: 1rem;
+                color: vars.$whiteText;
+
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+        }
+
+        &__dropdown {
+            position: relative;
+            margin-right: 1rem;
+        }
+
+        .dropdown-link {
+            display: flex;
+            cursor: pointer;
+
+            &:hover {
+                color: vars.$whiteText;
+            }
+        }
+
+        .sub-menu {
+            position: absolute;
+            top: 20px;
+            left: -50px;
+            z-index: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-radius: 5px;
+            width: 200px;
+
+            &__links {
+                margin-bottom: .5rem;
+
+                &:hover {
+                    color: vars.$whiteText;
+                }
+
+                &--active {
+                    margin-bottom: .5rem;
+                    color: vars.$whiteText;
+                }
+            }
+        }
+
+        .connect-cta {
+            background-color: vars.$primaryColor;
+            padding: vars.$buttonCtaPadding;
+            border-radius: vars.$buttonCtaRadius;
+            color: vars.$whiteText;
+            font-weight: vars.$mediumWeight;
+            cursor: pointer;
+
+            &:hover {
+                background-color: vars.$whiteText;
+                color: vars.$primaryColor;
+            }
+        }
+    }
+
     .menu-burger {
         display: none;
     }
