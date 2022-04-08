@@ -4,7 +4,7 @@
 import { INPUT_CHANGE_LOGIN, OPEN_LOGIN, CLOSE_LOGIN } from 'src/actions/login';
 
 export const initialState = {
-  isOpen: true,
+  isOpen: false,
   email: '',
   password: '',
 };

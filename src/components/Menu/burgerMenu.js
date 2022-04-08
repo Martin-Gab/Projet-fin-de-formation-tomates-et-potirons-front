@@ -7,6 +7,7 @@ import { NavLink } from 'react-router-dom';
 
 // Local Imports
 import { toggleBurgerSubMenu } from 'src/actions/menu';
+import { openLogin } from 'src/actions/login';
 import BurgerSubMenu from './burgerSubMenu';
 
 const BurgerMenu = () => {
@@ -37,7 +38,14 @@ const BurgerMenu = () => {
       >
         Notre Agriculture
       </NavLink>
-      <div className="burger-menu__links connect-cta">Mon Espace</div>
+      <div
+        className="burger-menu__links connect-cta"
+        onClick={() => {
+          dispatch(openLogin());
+        }}
+      >
+        Mon Espace
+      </div>
     </nav>
   );
 };
