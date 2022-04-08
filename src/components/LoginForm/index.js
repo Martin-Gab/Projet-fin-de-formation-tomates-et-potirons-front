@@ -2,7 +2,7 @@
 
 // Local Imports
 import './login-form.scss';
-import { inputChangeLogin, closeLogin } from 'src/actions/login';
+import { inputChangeLogin, closeLogin, submitLogin } from 'src/actions/login';
 
 // Packages Imports
 import { X } from 'react-feather';
@@ -16,13 +16,16 @@ const LoginForm = () => {
   const password = useSelector((state) => state.login.password);
 
   return (
-    <div
-      className="login-modal"
-      onClick={() => {
-        dispatch(closeLogin());
-      }}
-    >
-      <form action="" method="post" className="login-form">
+    <div className="login-modal">
+      <form
+        action=""
+        method="post"
+        className="login-form"
+        onSubmit={(evt) => {
+          evt.preventDefault();
+          dispatch(submitLogin());
+        }}
+      >
         <div
           className="login-form__close"
           onClick={() => {
