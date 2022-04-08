@@ -7,6 +7,7 @@ import Home from 'src/components/Home';
 import Amap from 'src/components/Amap';
 import Footer from 'src/components/Footer';
 import MembershipForm from 'src/components/MembershipForm';
+import LoginForm from 'src/components/LoginForm';
 
 // Packages Imports
 import { useSelector } from 'react-redux';
@@ -25,6 +26,7 @@ const App = () => {
       </Routes>
       <Footer />
       {isOpen && <MembershipForm />}
+      <LoginForm />
     </div>
   );
 };
