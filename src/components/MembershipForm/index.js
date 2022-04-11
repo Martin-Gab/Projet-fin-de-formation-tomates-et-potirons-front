@@ -287,28 +287,32 @@ const MembershipForm = () => {
                   />
                   Personnalisé
                 </label>
-                <input
-                  type="number"
-                  name="nberCheck"
-                  id="nberCheck"
-                  placeholder="Nombres de chéques"
-                  className="membership-input"
-                  value={nberCheck}
-                  onChange={(evt) => {
-                    dispatch(changeInput(evt.target.value, 'numberCheck'));
-                  }}
-                />
-                <input
-                  type="number"
-                  name="amount"
-                  id="amount"
-                  placeholder="Montant (en euros)"
-                  className="membership-input"
-                  value={amount}
-                  onChange={(evt) => {
-                    dispatch(changeInput(evt.target.value, 'amount'));
-                  }}
-                />
+                {customChecked && (
+                  <>
+                    <input
+                      type="number"
+                      name="nberCheck"
+                      id="nberCheck"
+                      placeholder="Nombres de chéques"
+                      className="membership-input"
+                      value={nberCheck}
+                      onChange={(evt) => {
+                        dispatch(changeInput(evt.target.value, 'numberCheck'));
+                      }}
+                    />
+                    <input
+                      type="number"
+                      name="amount"
+                      id="amount"
+                      placeholder="Montant (en euros)"
+                      className="membership-input"
+                      value={amount}
+                      onChange={(evt) => {
+                        dispatch(changeInput(evt.target.value, 'amount'));
+                      }}
+                    />
+                  </>
+                )}
               </div>
             )}
           </div>
