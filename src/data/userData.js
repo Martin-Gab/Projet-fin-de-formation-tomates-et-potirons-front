@@ -15,6 +15,7 @@ export default {
   expirationDate: null,
   paymentType: 0,
   membershipStatus: 0,
+  donation: 0,
   createdAt: '2022-04-11T09:15:38+00:00',
   updatedAt: null,
   formule: {

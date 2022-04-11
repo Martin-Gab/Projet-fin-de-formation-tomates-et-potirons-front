@@ -4,8 +4,8 @@
 body {
   font-family: vars.$mainFont;
   background-color: vars.$mainBackgroundColor;
-  background-image: url('src/assets/images/background_mobile.png');
-  background-size: contain;
+  background-image: url('src/assets/images/background_desktop.png');
+  background-size: cover;
   background-repeat: no-repeat;
 }
 
@@ -23,7 +23,7 @@ main {
     font-family: vars.$mainFont;
     background-color: vars.$mainBackgroundColor;
     background-image: url('src/assets/images/background_desktop.png');
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
   }
 }
