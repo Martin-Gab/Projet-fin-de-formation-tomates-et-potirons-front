@@ -16,7 +16,7 @@ main {
 
 @media screen and (min-width: 800px) {
   main {
-    height: calc(100vh - 5rem);
+    height: calc(100% - 5rem);
   }
 
   body {

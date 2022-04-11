@@ -14,6 +14,7 @@ import { NavLink } from 'react-router-dom';
 import './menu.scss';
 import logo from 'src/assets/images/logo.png';
 import { toggleBurgerMenu, toggleSubMenu } from 'src/actions/menu';
+import { openLogin } from 'src/actions/login';
 import BurgerMenu from './burgerMenu';
 import SubMenu from './subMenu';
 
@@ -53,7 +54,14 @@ const Menu = () => {
           >
             Notre Agriculture
           </NavLink>
-          <div className="menu__links connect-cta">Mon Espace</div>
+          <div
+            className="menu__links connect-cta"
+            onClick={() => {
+              dispatch(openLogin());
+            }}
+          >
+            Mon Espace
+          </div>
         </div>
         <div
           className="menu-burger"
