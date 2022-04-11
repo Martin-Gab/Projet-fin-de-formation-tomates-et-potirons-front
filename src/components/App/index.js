@@ -7,6 +7,7 @@ import Home from 'src/components/Home';
 import Amap from 'src/components/Amap';
 import Footer from 'src/components/Footer';
 import MembershipForm from 'src/components/MembershipForm';
+import LoginForm from 'src/components/LoginForm';
 import MemberDashboard from 'src/components/MemberDashboard';
 import MemberProfil from 'src/components/MemberProfil';
 
@@ -17,6 +18,7 @@ import { Routes, Route } from 'react-router-dom';
 // == Composant
 const App = () => {
   const isOpen = useSelector((state) => state.membership.isOpen);
+  const isOpenLogin = useSelector((state) => state.login.isOpen);
 
   return (
     <div className="app">
@@ -29,6 +31,7 @@ const App = () => {
       </Routes>
       <Footer />
       {isOpen && <MembershipForm />}
+      {isOpenLogin && <LoginForm />}
     </div>
   );
 };
