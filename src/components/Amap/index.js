@@ -4,7 +4,7 @@
 import './amap.scss';
 import amapImage from 'src/assets/images/taxi-98.gif';
 import { openForm } from 'src/actions/membership';
-import { closeBurgerMenu } from 'src/actions/menu';
+import { closeBurgerMenu, closeSubMenu } from 'src/actions/menu';
 
 // Packages Imports
 import { useDispatch } from 'react-redux';
@@ -17,6 +17,7 @@ const Amap = () => {
     () => {
       window.scrollTo(0, 0);
       dispatch(closeBurgerMenu());
+      dispatch(closeSubMenu());
     },
     [],
   );

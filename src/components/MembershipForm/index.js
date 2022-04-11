@@ -3,7 +3,12 @@
 // local imports
 import './membership-form.scss';
 import { useSelector, useDispatch } from 'react-redux';
-import { changeInput, toggleBasketOption, closeForm } from 'src/actions/membership';
+import {
+  changeInput,
+  toggleBasketOption,
+  closeForm,
+  submitMembership,
+} from 'src/actions/membership';
 
 import BasketOption from './basketOption';
 
@@ -47,7 +52,13 @@ const MembershipForm = () => {
       </div>
       <h1 className="form__title">Formulaire d'adhésion à l'AMAP</h1>
 
-      <form action="">
+      <form
+        action="POST"
+        onSubmit={(evt) => {
+          evt.preventDefault();
+          dispatch(submitMembership());
+        }}
+      >
 
         <div className="infos">
           <h3 className="section-title">Informations Personnelles</h3>
@@ -234,30 +245,34 @@ const MembershipForm = () => {
           </div>
 
           <div className="payment__choice">
-            <label htmlFor="choice">
-              <input
-                type="radio"
-                name="choice"
-                id="choice"
-                checked={totalChecked}
-                onChange={() => {
-                  dispatch(changeInput(0, 'totalPayment'));
-                }}
-              />
-              Total
-            </label>
-            <label htmlFor="choice">
-              <input
-                type="radio"
-                name="choice"
-                id="choice"
-                checked={monthlyChecked}
-                onChange={() => {
-                  dispatch(changeInput(1, 'monthlyPayment'));
-                }}
-              />
-              Mensuel
-            </label>
+            {basketOption && (
+              <>
+                <label htmlFor="choice">
+                  <input
+                    type="radio"
+                    name="choice"
+                    id="choice"
+                    checked={totalChecked}
+                    onChange={() => {
+                      dispatch(changeInput(0, 'totalPayment'));
+                    }}
+                  />
+                  Total
+                </label>
+                <label htmlFor="choice">
+                  <input
+                    type="radio"
+                    name="choice"
+                    id="choice"
+                    checked={monthlyChecked}
+                    onChange={() => {
+                      dispatch(changeInput(1, 'monthlyPayment'));
+                    }}
+                  />
+                  Mensuel
+                </label>
+              </>
+            )}
             {checkOption && basketOption && (
               <div className="payment__choice">
                 <label htmlFor="choice" className="choice-custom">
@@ -272,28 +287,32 @@ const MembershipForm = () => {
                   />
                   Personnalisé
                 </label>
-                <input
-                  type="number"
-                  name="nberCheck"
-                  id="nberCheck"
-                  placeholder="Nombres de chéques"
-                  className="membership-input"
-                  value={nberCheck}
-                  onChange={(evt) => {
-                    dispatch(changeInput(evt.target.value, 'numberCheck'));
-                  }}
-                />
-                <input
-                  type="number"
-                  name="amount"
-                  id="amount"
-                  placeholder="Montant (en euros)"
-                  className="membership-input"
-                  value={amount}
-                  onChange={(evt) => {
-                    dispatch(changeInput(evt.target.value, 'amount'));
-                  }}
-                />
+                {customChecked && (
+                  <>
+                    <input
+                      type="number"
+                      name="nberCheck"
+                      id="nberCheck"
+                      placeholder="Nombres de chéques"
+                      className="membership-input"
+                      value={nberCheck}
+                      onChange={(evt) => {
+                        dispatch(changeInput(evt.target.value, 'numberCheck'));
+                      }}
+                    />
+                    <input
+                      type="number"
+                      name="amount"
+                      id="amount"
+                      placeholder="Montant (en euros)"
+                      className="membership-input"
+                      value={amount}
+                      onChange={(evt) => {
+                        dispatch(changeInput(evt.target.value, 'amount'));
+                      }}
+                    />
+                  </>
+                )}
               </div>
             )}
           </div>
