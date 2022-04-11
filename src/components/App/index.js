@@ -8,6 +8,7 @@ import Amap from 'src/components/Amap';
 import Footer from 'src/components/Footer';
 import MembershipForm from 'src/components/MembershipForm';
 import MemberDashboard from 'src/components/MemberDashboard';
+import MemberProfil from 'src/components/MemberProfil';
 
 // Packages Imports
 import { useSelector } from 'react-redux';
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/nos-activites/amap" element={<Amap />} />
         <Route path="/mon-espace/tableau-de-bord" element={<MemberDashboard />} />
+        <Route path="/mon-espace/profil" element={<MemberProfil />} />
       </Routes>
       <Footer />
       {isOpen && <MembershipForm />}
