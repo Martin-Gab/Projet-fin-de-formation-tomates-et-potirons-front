@@ -19,6 +19,7 @@ import { Routes, Route } from 'react-router-dom';
 const App = () => {
   const isOpen = useSelector((state) => state.membership.isOpen);
   const isOpenLogin = useSelector((state) => state.login.isOpen);
+  const isConnected = useSelector((state) => state.user.isConnected);
 
   return (
     <div className="app">
@@ -26,8 +27,12 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/nos-activites/amap" element={<Amap />} />
-        <Route path="/mon-espace/tableau-de-bord" element={<MemberDashboard />} />
-        <Route path="/mon-espace/profil" element={<MemberProfil />} />
+        {isConnected && (localStorage.getItem('token') !== null) && (
+          <>
+            <Route path="/mon-espace/tableau-de-bord" element={<MemberDashboard />} />
+            <Route path="/mon-espace/profil" element={<MemberProfil />} />
+          </>
+        )}
       </Routes>
       <Footer />
       {isOpen && <MembershipForm />}
