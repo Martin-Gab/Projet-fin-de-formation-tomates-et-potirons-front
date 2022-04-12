@@ -4,7 +4,8 @@
 import axios from 'axios';
 
 // Local Imports
-import { SUBMIT_MEMBERSHIP, submitSuccess } from 'src/actions/membership';
+import { SUBMIT_MEMBERSHIP, OPEN_FORM, submitSuccess } from 'src/actions/membership';
+import { closeBurgerMenu } from 'src/actions/menu';
 
 const membershipMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -44,6 +45,10 @@ const membershipMiddleware = (store) => (next) => (action) => {
         .catch((error) => {
           console.log(error.response.data);
         });
+      break;
+
+    case OPEN_FORM:
+      store.dispatch(closeBurgerMenu());
       break;
 
     default:
