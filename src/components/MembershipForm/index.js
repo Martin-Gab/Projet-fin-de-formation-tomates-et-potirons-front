@@ -218,11 +218,11 @@ const MembershipForm = () => {
           <div className="form-underline" />
 
           <div className="payment__type">
-            <label htmlFor="paymentType">
+            <label htmlFor="paymentTypeCash">
               <input
                 type="radio"
                 name="paymentType"
-                id="paymentType"
+                id="paymentTypeCash"
                 checked={cashOption}
                 onChange={() => {
                   dispatch(changeInput(1, 'payment'));
@@ -230,11 +230,11 @@ const MembershipForm = () => {
               />
               Espèce
             </label>
-            <label htmlFor="paymentType">
+            <label htmlFor="paymentTypeCheck">
               <input
                 type="radio"
                 name="paymentType"
-                id="paymentType"
+                id="paymentTypeCheck"
                 checked={checkOption}
                 onChange={() => {
                   dispatch(changeInput(0, 'payment'));
@@ -247,11 +247,11 @@ const MembershipForm = () => {
           <div className="payment__choice">
             {basketOption && (
               <>
-                <label htmlFor="choice">
+                <label htmlFor="choiceTotal">
                   <input
                     type="radio"
                     name="choice"
-                    id="choice"
+                    id="choiceTotal"
                     checked={totalChecked}
                     onChange={() => {
                       dispatch(changeInput(0, 'totalPayment'));
@@ -259,11 +259,11 @@ const MembershipForm = () => {
                   />
                   Total
                 </label>
-                <label htmlFor="choice">
+                <label htmlFor="choiceMonthly">
                   <input
                     type="radio"
                     name="choice"
-                    id="choice"
+                    id="choiceMonthly"
                     checked={monthlyChecked}
                     onChange={() => {
                       dispatch(changeInput(1, 'monthlyPayment'));
@@ -275,11 +275,11 @@ const MembershipForm = () => {
             )}
             {checkOption && basketOption && (
               <div className="payment__choice">
-                <label htmlFor="choice" className="choice-custom">
+                <label htmlFor="choiceCustom" className="choice-custom">
                   <input
                     type="radio"
                     name="choice"
-                    id="choice"
+                    id="choiceCustom"
                     checked={customChecked}
                     onChange={() => {
                       dispatch(changeInput(2, 'customPayment'));
@@ -353,7 +353,7 @@ const MembershipForm = () => {
           />
           <input
             type="password"
-            id="password"
+            id="passwordCheck"
             placeholder="Vérification mot de passe"
             className="membership-input"
             required

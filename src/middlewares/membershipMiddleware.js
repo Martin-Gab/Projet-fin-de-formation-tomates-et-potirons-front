@@ -7,8 +7,6 @@ import axios from 'axios';
 import { SUBMIT_MEMBERSHIP } from 'src/actions/membership';
 
 const membershipMiddleware = (store) => (next) => (action) => {
-  console.log(`on a intercepté l'action : ${action.type} dans le membershipMiddleware`);
-
   switch (action.type) {
     case SUBMIT_MEMBERSHIP:
       axios.post(
