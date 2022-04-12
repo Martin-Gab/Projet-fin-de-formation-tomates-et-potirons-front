@@ -6,6 +6,7 @@ import axios from 'axios';
 // Local Imports
 import { SUBMIT_MEMBERSHIP, OPEN_FORM, submitSuccess } from 'src/actions/membership';
 import { closeBurgerMenu } from 'src/actions/menu';
+import { toggleSubmitSuccess } from 'src/actions/modals';
 
 const membershipMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -31,7 +32,7 @@ const membershipMiddleware = (store) => (next) => (action) => {
             duration: store.getState().membership.duration,
             choice: store.getState().membership.choice,
             nberCheck: Number(store.getState().membership.nberCheck),
-            amount: store.getState().membership.amount === '' ? null : store.getState().membership.amount,
+            amount: store.getState().membership.amount === '' ? '0.00' : store.getState().membership.amount,
           },
           donation: Number(store.getState().membership.donation),
           membership_status: 0,
@@ -41,6 +42,7 @@ const membershipMiddleware = (store) => (next) => (action) => {
         .then((response) => {
           console.log(response);
           store.dispatch(submitSuccess());
+          store.dispatch(toggleSubmitSuccess());
         })
         .catch((error) => {
           console.log(error.response.data);

@@ -12,11 +12,14 @@ body {
 main {
   min-width: 80%;
   margin: 0 auto;
+  position: relative;
+  overflow: hidden;
 }
 
 @media screen and (min-width: 800px) {
   main {
     height: calc(100% - 5rem);
+    position: relative;
   }
 
   body {
