@@ -1,5 +1,8 @@
 // MembershipForm Component
 
+// Packages Imports
+import { X } from 'react-feather';
+
 // local imports
 import './membership-form.scss';
 import { useSelector, useDispatch } from 'react-redux';
@@ -41,338 +44,328 @@ const MembershipForm = () => {
   const passwordVerification = useSelector((state) => state.membership.passwordVerification);
 
   return (
-    <div className="form">
-      <div
-        className="close-form"
-        onClick={() => {
-          dispatch(closeForm());
-        }}
-      >
-        X
-      </div>
-      <h1 className="form__title">Formulaire d'adhésion à l'AMAP</h1>
-
-      <form
-        action="POST"
-        onSubmit={(evt) => {
-          evt.preventDefault();
-          dispatch(submitMembership());
-        }}
-      >
-
-        <div className="form-wrapper">
-
-          <div className="infos">
-            <h3 className="section-title">Informations Personnelles</h3>
-            <div className="form-underline" />
-            <div className="infos__inputs">
+    <div className="form-modal">
+      <div className="form">
+        <div
+          className="close-form"
+          onClick={() => {
+            dispatch(closeForm());
+          }}
+        >
+          <X size={20} />
+        </div>
+        <h1 className="form__title">Formulaire d'adhésion à l'AMAP</h1>
+        <form
+          action="POST"
+          onSubmit={(evt) => {
+            evt.preventDefault();
+            dispatch(submitMembership());
+          }}
+        >
+          <div className="form-wrapper">
+            <div className="infos">
+              <h3 className="section-title">Informations Personnelles</h3>
+              <div className="form-underline" />
+              <div className="infos__inputs">
+                <input
+                  className="membership-input"
+                  type="text"
+                  placeholder="Prénom"
+                  name="firstName"
+                  value={firstName}
+                  onChange={(evt) => {
+                    dispatch(changeInput(evt.target.value, 'firstName'));
+                  }}
+                  required
+                />
+                <input
+                  className="membership-input"
+                  type="text"
+                  placeholder="Nom"
+                  name="lastName"
+                  value={lastName}
+                  onChange={(evt) => {
+                    dispatch(changeInput(evt.target.value, 'lastName'));
+                  }}
+                  required
+                />
+                <input
+                  className="membership-input"
+                  type="text"
+                  placeholder="Adresse"
+                  name="address"
+                  value={address}
+                  onChange={(evt) => {
+                    dispatch(changeInput(evt.target.value, 'address'));
+                  }}
+                  required
+                />
+                <input
+                  className="membership-input"
+                  type="text"
+                  placeholder="Code Postal"
+                  name="zipCode"
+                  value={zipCode}
+                  onChange={(evt) => {
+                    dispatch(changeInput(evt.target.value, 'zipCode'));
+                  }}
+                  required
+                />
+                <input
+                  className="membership-input"
+                  type="text"
+                  placeholder="Ville"
+                  name="city"
+                  value={city}
+                  onChange={(evt) => {
+                    dispatch(changeInput(evt.target.value, 'city'));
+                  }}
+                  required
+                />
+              </div>
+            </div>
+            <div className="contact">
+              <h3 className="section-title">Contact</h3>
+              <div className="form-underline" />
               <input
                 className="membership-input"
-                type="text"
-                placeholder="Prénom"
-                name="firstName"
-                value={firstName}
+                type="tel"
+                placeholder="Numéro de téléphone"
+                name="phone"
+                pattern="[0-9]{10}"
+                maxLength={10}
+                value={phone}
                 onChange={(evt) => {
-                  dispatch(changeInput(evt.target.value, 'firstName'));
+                  dispatch(changeInput(evt.target.value, 'phone'));
                 }}
                 required
               />
               <input
                 className="membership-input"
-                type="text"
-                placeholder="Nom"
-                name="lastName"
-                value={lastName}
+                type="email"
+                placeholder="Adresse email"
+                name="email"
+                value={email}
                 onChange={(evt) => {
-                  dispatch(changeInput(evt.target.value, 'lastName'));
+                  dispatch(changeInput(evt.target.value, 'email'));
                 }}
                 required
               />
-              <input
-                className="membership-input"
-                type="text"
-                placeholder="Adresse"
-                name="address"
-                value={address}
-                onChange={(evt) => {
-                  dispatch(changeInput(evt.target.value, 'address'));
+              <fieldset>
+                <legend>J'accepte de partager, avec les autres adhérents :</legend>
+                <div className="contact__checkbox">
+                  <label htmlFor="phoneSharing">
+                    <input
+                      type="checkbox"
+                      id="phoneSharing"
+                      name="phoneSharing"
+                      checked={phoneSharingChecked}
+                      value={phoneSharing}
+                      onChange={(evt) => {
+                        if (evt.target.value === '0') {
+                          dispatch(changeInput(1, 'phoneSharing'));
+                        }
+                        else {
+                          dispatch(changeInput(0, 'phoneSharing'));
+                        }
+                      }}
+                    />
+                    Mon numéro de téléphone
+                  </label>
+                  <label htmlFor="emailSharing">
+                    <input
+                      type="checkbox"
+                      id="emailSharing"
+                      name="emailSharing"
+                      value={emailSharing}
+                      checked={emailSharingChecked}
+                      onChange={(evt) => {
+                        if (evt.target.value === '0') {
+                          dispatch(changeInput(1, 'emailSharing'));
+                        }
+                        else {
+                          dispatch(changeInput(0, 'emailSharing'));
+                        }
+                      }}
+                    />
+                    Mon adresse mail
+                  </label>
+                </div>
+              </fieldset>
+            </div>
+            <div className="basket">
+              <h3 className="section-title">Option Panier</h3>
+              <div className="form-underline" />
+              <div
+                className="basket__add"
+                onClick={() => {
+                  if (basketType === 1 || basketType === 2) {
+                    dispatch(toggleBasketOption('off'));
+                  }
+                  else {
+                    dispatch(toggleBasketOption('on'));
+                  }
                 }}
+              >
+                + Panier
+              </div>
+              {basketOption && <BasketOption />}
+            </div>
+            <div className="password">
+              <h3 className="section-title">Authentification</h3>
+              <div className="form-underline" />
+              <input
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Votre mot de passe"
+                className="membership-input"
                 required
+                value={password}
+                onChange={(evt) => {
+                  dispatch(changeInput(evt.target.value, 'password'));
+                }}
               />
               <input
+                type="password"
+                id="passwordCheck"
+                placeholder="Vérification mot de passe"
                 className="membership-input"
-                type="text"
-                placeholder="Code Postal"
-                name="zipCode"
-                value={zipCode}
-                onChange={(evt) => {
-                  dispatch(changeInput(evt.target.value, 'zipCode'));
-                }}
                 required
-              />
-              <input
-                className="membership-input"
-                type="text"
-                placeholder="Ville"
-                name="city"
-                value={city}
+                value={passwordVerification}
                 onChange={(evt) => {
-                  dispatch(changeInput(evt.target.value, 'city'));
+                  dispatch(changeInput(evt.target.value, 'passwordCheck'));
                 }}
-                required
               />
             </div>
-          </div>
-
-          <div className="contact">
-            <h3 className="section-title">Contact</h3>
-            <div className="form-underline" />
-            <input
-              className="membership-input"
-              type="tel"
-              placeholder="Numéro de téléphone"
-              name="phone"
-              pattern="[0-9]{10}"
-              maxLength={10}
-              value={phone}
-              onChange={(evt) => {
-                dispatch(changeInput(evt.target.value, 'phone'));
-              }}
-              required
-            />
-            <input
-              className="membership-input"
-              type="email"
-              placeholder="Adresse email"
-              name="email"
-              value={email}
-              onChange={(evt) => {
-                dispatch(changeInput(evt.target.value, 'email'));
-              }}
-              required
-            />
-            <fieldset>
-              <legend>J'accepte de partager, avec les autres adhérents :</legend>
-              <div className="contact__checkbox">
-                <label htmlFor="phoneSharing">
+            <div className="payment">
+              <h3 className="section-title">Réglement</h3>
+              <div className="form-underline" />
+              <div className="payment__type">
+                <label htmlFor="paymentTypeCash">
                   <input
-                    type="checkbox"
-                    id="phoneSharing"
-                    name="phoneSharing"
-                    checked={phoneSharingChecked}
-                    value={phoneSharing}
-                    onChange={(evt) => {
-                      if (evt.target.value === '0') {
-                        dispatch(changeInput(1, 'phoneSharing'));
-                      }
-                      else {
-                        dispatch(changeInput(0, 'phoneSharing'));
-                      }
+                    type="radio"
+                    name="paymentType"
+                    id="paymentTypeCash"
+                    checked={cashOption}
+                    onChange={() => {
+                      dispatch(changeInput(1, 'payment'));
                     }}
                   />
-                  Mon numéro de téléphone
+                  Espèce
                 </label>
-                <label htmlFor="emailSharing">
+                <label htmlFor="paymentTypeCheck">
                   <input
-                    type="checkbox"
-                    id="emailSharing"
-                    name="emailSharing"
-                    value={emailSharing}
-                    checked={emailSharingChecked}
-                    onChange={(evt) => {
-                      if (evt.target.value === '0') {
-                        dispatch(changeInput(1, 'emailSharing'));
-                      }
-                      else {
-                        dispatch(changeInput(0, 'emailSharing'));
-                      }
+                    type="radio"
+                    name="paymentType"
+                    id="paymentTypeCheck"
+                    checked={checkOption}
+                    onChange={() => {
+                      dispatch(changeInput(0, 'payment'));
                     }}
                   />
-                  Mon adresse mail
+                  Chéque
                 </label>
               </div>
-            </fieldset>
-          </div>
-
-          <div className="basket">
-            <h3 className="section-title">Option Panier</h3>
-            <div className="form-underline" />
-            <div
-              className="basket__add"
-              onClick={() => {
-                if (basketType === 1 || basketType === 2) {
-                  dispatch(toggleBasketOption('off'));
-                }
-                else {
-                  dispatch(toggleBasketOption('on'));
-                }
-              }}
-            >
-              + Panier
-            </div>
-            {basketOption && <BasketOption />}
-          </div>
-
-          <div className="payment">
-            <h3 className="section-title">Réglement</h3>
-            <div className="form-underline" />
-            <div className="payment__type">
-              <label htmlFor="paymentTypeCash">
-                <input
-                  type="radio"
-                  name="paymentType"
-                  id="paymentTypeCash"
-                  checked={cashOption}
-                  onChange={() => {
-                    dispatch(changeInput(1, 'payment'));
-                  }}
-                />
-                Espèce
-              </label>
-              <label htmlFor="paymentTypeCheck">
-                <input
-                  type="radio"
-                  name="paymentType"
-                  id="paymentTypeCheck"
-                  checked={checkOption}
-                  onChange={() => {
-                    dispatch(changeInput(0, 'payment'));
-                  }}
-                />
-                Chéque
-              </label>
-            </div>
-            <div className="payment__choice">
-              {basketOption && (
-                <>
-                  <label htmlFor="choiceTotal">
-                    <input
-                      type="radio"
-                      name="choice"
-                      id="choiceTotal"
-                      checked={totalChecked}
-                      onChange={() => {
-                        dispatch(changeInput(0, 'totalPayment'));
-                      }}
-                    />
-                    Total
-                  </label>
-                  <label htmlFor="choiceMonthly">
-                    <input
-                      type="radio"
-                      name="choice"
-                      id="choiceMonthly"
-                      checked={monthlyChecked}
-                      onChange={() => {
-                        dispatch(changeInput(1, 'monthlyPayment'));
-                      }}
-                    />
-                    Mensuel
-                  </label>
-                </>
-              )}
-              {checkOption && basketOption && (
-                <div className="payment__choice">
-                  <label htmlFor="choiceCustom" className="choice-custom">
-                    <input
-                      type="radio"
-                      name="choice"
-                      id="choiceCustom"
-                      checked={customChecked}
-                      onChange={() => {
-                        dispatch(changeInput(2, 'customPayment'));
-                      }}
-                    />
-                    Personnalisé
-                  </label>
-                  {customChecked && (
-                    <>
+              <div className="payment__choice">
+                {basketOption && (
+                  <>
+                    <label htmlFor="choiceTotal">
                       <input
-                        type="number"
-                        name="nberCheck"
-                        id="nberCheck"
-                        placeholder="Nombres de chéques"
-                        className="membership-input"
-                        value={nberCheck}
-                        onChange={(evt) => {
-                          dispatch(changeInput(evt.target.value, 'numberCheck'));
+                        type="radio"
+                        name="choice"
+                        id="choiceTotal"
+                        checked={totalChecked}
+                        onChange={() => {
+                          dispatch(changeInput(0, 'totalPayment'));
                         }}
                       />
+                      Total
+                    </label>
+                    <label htmlFor="choiceMonthly">
                       <input
-                        type="number"
-                        name="amount"
-                        id="amount"
-                        placeholder="Montant (en euros)"
-                        className="membership-input"
-                        value={amount}
-                        onChange={(evt) => {
-                          dispatch(changeInput(evt.target.value, 'amount'));
+                        type="radio"
+                        name="choice"
+                        id="choiceMonthly"
+                        checked={monthlyChecked}
+                        onChange={() => {
+                          dispatch(changeInput(1, 'monthlyPayment'));
                         }}
                       />
-                    </>
-                  )}
-                </div>
-              )}
-            </div>
-            <div className="payment__donation">
-              <h4 className="section-subtitle">Don (optionnel)</h4>
-              <input
-                type="number"
-                name="donation"
-                id="donation"
-                placeholder="En euros"
-                className="membership-input"
-                value={donation}
-                onChange={(evt) => {
-                  dispatch(changeInput(evt.target.value, 'donation'));
-                }}
-              />
+                      Mensuel
+                    </label>
+                  </>
+                )}
+                {checkOption && basketOption && (
+                  <div className="payment__choice">
+                    <label htmlFor="choiceCustom" className="choice-custom">
+                      <input
+                        type="radio"
+                        name="choice"
+                        id="choiceCustom"
+                        checked={customChecked}
+                        onChange={() => {
+                          dispatch(changeInput(2, 'customPayment'));
+                        }}
+                      />
+                      Personnalisé
+                    </label>
+                    {customChecked && (
+                      <>
+                        <input
+                          type="number"
+                          name="nberCheck"
+                          id="nberCheck"
+                          placeholder="Nombres de chéques"
+                          className="membership-input"
+                          value={nberCheck}
+                          onChange={(evt) => {
+                            dispatch(changeInput(evt.target.value, 'numberCheck'));
+                          }}
+                        />
+                        <input
+                          type="number"
+                          name="amount"
+                          id="amount"
+                          placeholder="Montant (en euros)"
+                          className="membership-input"
+                          value={amount}
+                          onChange={(evt) => {
+                            dispatch(changeInput(evt.target.value, 'amount'));
+                          }}
+                        />
+                      </>
+                    )}
+                  </div>
+                )}
+              </div>
+              <div className="payment__donation">
+                <h4 className="section-subtitle">Don (optionnel)</h4>
+                <input
+                  type="number"
+                  name="donation"
+                  id="donation"
+                  placeholder="En euros"
+                  className="membership-input"
+                  value={donation}
+                  onChange={(evt) => {
+                    dispatch(changeInput(evt.target.value, 'donation'));
+                  }}
+                />
+              </div>
             </div>
           </div>
-
-          <div className="password">
-            <h3 className="section-title">Authentification</h3>
-            <div className="form-underline" />
-            <input
-              type="password"
-              name="password"
-              id="password"
-              placeholder="Votre mot de passe"
-              className="membership-input"
-              required
-              value={password}
-              onChange={(evt) => {
-                dispatch(changeInput(evt.target.value, 'password'));
-              }}
-            />
-            <input
-              type="password"
-              id="passwordCheck"
-              placeholder="Vérification mot de passe"
-              className="membership-input"
-              required
-              value={passwordVerification}
-              onChange={(evt) => {
-                dispatch(changeInput(evt.target.value, 'passwordCheck'));
-              }}
-            />
+          <div className="summary">
+            <p>Adhésion : 10€</p>
+            <p>Formule Panier : ...€</p>
+            <p>Don : ...€</p>
+            <h2>Prix total : ...€</h2>
           </div>
-
-        </div>
-
-        <div className="summary">
-          <p>Adhésion : 10€</p>
-          <p>Formule Panier : ...€</p>
-          <p>Don : ...€</p>
-          <h2>Prix total : ...€</h2>
-        </div>
-
-        <button type="submit">
-          Valider mon adhésion
-        </button>
-
-      </form>
-
+          <button type="submit">
+            Valider mon adhésion
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
