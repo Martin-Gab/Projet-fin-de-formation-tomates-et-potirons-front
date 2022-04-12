@@ -6,16 +6,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 // Local Imports
-import { toggleBurgerSubMenu, toggleUserSubMenu } from 'src/actions/menu';
+import { toggleBurgerSubMenu, toggleUserBurgerSubMenu } from 'src/actions/menu';
 import { openLogin } from 'src/actions/login';
 import BurgerSubMenu from './burgerSubMenu';
-import UserSubMenu from './userSubMenu';
+import UserBurgerSubMenu from './userBurgerSubMenu';
 
 const BurgerMenu = () => {
   const dispatch = useDispatch();
 
   const burgerSubMenu = useSelector((state) => state.menu.burgerSubMenu);
-  const userSubMenu = useSelector((state) => state.menu.userSubMenu);
+  const userBurgerSubMenu = useSelector((state) => state.menu.userBurgerSubMenu);
 
   return (
     <nav className="burger-menu">
@@ -55,12 +55,12 @@ const BurgerMenu = () => {
           <div
             className="burger-menu__links"
             onClick={() => {
-              dispatch(toggleUserSubMenu());
+              dispatch(toggleUserBurgerSubMenu());
             }}
           >
-            Mon Espace {userSubMenu ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+            Mon Espace {userBurgerSubMenu ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
           </div>
-          {userSubMenu && <UserSubMenu />}
+          {userBurgerSubMenu && <UserBurgerSubMenu />}
           <div className="burger-menu__links connect-cta">
             Se déconnecter
           </div>

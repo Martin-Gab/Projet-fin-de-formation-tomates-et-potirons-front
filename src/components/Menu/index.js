@@ -13,25 +13,31 @@ import { NavLink } from 'react-router-dom';
 // Local Imports
 import './menu.scss';
 import logo from 'src/assets/images/logo.png';
-import { toggleBurgerMenu, toggleSubMenu } from 'src/actions/menu';
+import { toggleBurgerMenu, toggleSubMenu, toggleUserSubMenu } from 'src/actions/menu';
 import { openLogin } from 'src/actions/login';
 import BurgerMenu from './burgerMenu';
 import SubMenu from './subMenu';
+import UserSubMenu from './userSubMenu';
 
 const Menu = () => {
   const dispatch = useDispatch();
 
   const burgerMenu = useSelector((state) => state.menu.burgerMenu);
   const subMenu = useSelector((state) => state.menu.subMenu);
+  const userSubMenu = useSelector((state) => state.menu.userSubMenu);
 
   return (
     <header>
       <div className="menu-wrapper">
+
         <NavLink to="/">
           <img src={logo} alt="Le logo de tomates et potirons" className="main-logo" />
         </NavLink>
+
+        {/* ========= Menu Desktop ========= */}
         <div className="menu">
           <div className="menu__dropdown">
+
             <div
               className="dropdown-link"
               onClick={() => {
@@ -42,6 +48,7 @@ const Menu = () => {
             </div>
             {subMenu && <SubMenu />}
           </div>
+
           <NavLink
             className="menu__links"
             to="/vos-maraichers"
@@ -54,15 +61,43 @@ const Menu = () => {
           >
             Notre Agriculture
           </NavLink>
-          <div
-            className="menu__links connect-cta"
-            onClick={() => {
-              dispatch(openLogin());
-            }}
-          >
-            Mon Espace
-          </div>
+
+          {/* Display if user disconnected */}
+          {(localStorage.getItem('token') === null) && (
+            <div
+              className="menu__links connect-cta"
+              onClick={() => {
+                dispatch(openLogin());
+              }}
+            >
+              Mon Espace
+            </div>
+          )}
+
+          {/* Display if user connected */}
+          {(localStorage.getItem('token') !== null) && (
+            <>
+              <div
+                className="menu__dropdown"
+                onClick={() => {
+                  dispatch(toggleUserSubMenu());
+                }}
+              >
+                <div className="dropdown-link">
+                  Mon Espace {userSubMenu ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                </div>
+                {userSubMenu && <UserSubMenu />}
+              </div>
+              <div
+                className="menu__links connect-cta"
+              >
+                Me déconnecter
+              </div>
+            </>
+          )}
         </div>
+
+        {/* ========= Menu Burger ========= */}
         <div
           className="menu-burger"
           onClick={() => {

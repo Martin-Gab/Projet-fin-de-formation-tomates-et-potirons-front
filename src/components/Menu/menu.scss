@@ -60,7 +60,7 @@
     display: none;
 }
 
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 830px) {
     .menu-display {
         display: inherit;
     }
@@ -106,7 +106,7 @@
 
         .sub-menu {
             position: absolute;
-            top: 20px;
+            top: 30px;
             left: -50px;
             z-index: auto;
             display: flex;
