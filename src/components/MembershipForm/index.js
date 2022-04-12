@@ -13,6 +13,8 @@ import {
   submitMembership,
 } from 'src/actions/membership';
 
+import { calculateBasketPrice, calculateTotalPrice } from '../../utils/priceMembership';
+
 import BasketOption from './basketOption';
 
 const MembershipForm = () => {
@@ -357,9 +359,20 @@ const MembershipForm = () => {
           </div>
           <div className="summary">
             <p>Adhésion : 10€</p>
-            <p>Formule Panier : ...€</p>
-            <p>Don : ...€</p>
-            <h2>Prix total : ...€</h2>
+            <p>
+              Formule Panier : {calculateBasketPrice(useSelector((state) => state.membership))}€
+            </p>
+            <p>
+              Don : {
+                donation === '' ? 0 : donation
+              }€
+            </p>
+            <h2>
+              Prix total : {
+                // eslint-disable-next-line max-len
+                calculateTotalPrice(10, calculateBasketPrice(useSelector((state) => state.membership)), donation)
+              }€
+            </h2>
           </div>
           <button type="submit">
             Valider mon adhésion

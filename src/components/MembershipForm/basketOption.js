@@ -1,6 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { changeInput } from 'src/actions/membership';
 
+import { calculateBasketPrice } from '../../utils/priceMembership';
+
 const BasketOption = () => {
   const dispatch = useDispatch();
 
@@ -80,7 +82,9 @@ const BasketOption = () => {
         </label>
       </div>
 
-      <p className="basket__amount">Montant de la formule panier : 50 €</p>
+      <p className="basket__amount">
+        Montant formule panier : {calculateBasketPrice(useSelector((state) => state.membership))}€
+      </p>
     </>
   );
 };
