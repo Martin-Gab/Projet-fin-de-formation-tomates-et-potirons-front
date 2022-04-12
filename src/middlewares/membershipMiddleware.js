@@ -1,10 +1,10 @@
 // Middleware to handle the membership
 
-// NPM Imports
+// Packages Imports
 import axios from 'axios';
 
 // Local Imports
-import { SUBMIT_MEMBERSHIP } from 'src/actions/membership';
+import { SUBMIT_MEMBERSHIP, submitSuccess } from 'src/actions/membership';
 
 const membershipMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -39,6 +39,7 @@ const membershipMiddleware = (store) => (next) => (action) => {
       )
         .then((response) => {
           console.log(response);
+          store.dispatch(submitSuccess());
         })
         .catch((error) => {
           console.log(error.response.data);

@@ -3,6 +3,7 @@ import {
   TOGGLE_BASKET_OPTION,
   CLOSE_FORM,
   OPEN_FORM,
+  SUBMIT_SUCCESS,
 } from 'src/actions/membership';
 
 export const initialState = {
@@ -249,6 +250,43 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         isOpen: false,
+      };
+
+    case SUBMIT_SUCCESS:
+      return {
+        ...state,
+        isOpen: false,
+        basketOption: false,
+        firstName: '',
+        lastName: '',
+        address: '',
+        zipCode: '',
+        city: '',
+        phone: '',
+        email: '',
+        phoneSharingChecked: false,
+        phoneSharing: 0,
+        emailSharingChecked: false,
+        emailSharing: 0,
+        basketFull: true,
+        basketHalf: false,
+        basketType: 0,
+        duration: 0,
+        oneMonthChecked: true,
+        fiveMonthChecked: false,
+        tenMonthChecked: false,
+        paymentType: 1,
+        cashOption: true,
+        checkOption: false,
+        choice: 0,
+        totalChecked: true,
+        monthlyChecked: false,
+        customChecked: false,
+        nberCheck: '',
+        amount: '',
+        donation: '',
+        password: '',
+        passwordVerification: '',
       };
 
     default:
