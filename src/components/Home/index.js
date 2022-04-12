@@ -30,10 +30,12 @@ const Home = () => {
   return (
     <main>
       <div className="homepage">
+
         <section className="hero">
           <h1 className="hero__title">Vos maraîchers cultivent pour vous.</h1>
           <img src={heroBannerMobile} alt="illustration des activités de tomates et potirons" className="hero__banner" />
         </section>
+
         <section className="amap">
           <img src={amapImage} alt="panier de l'amap" className="amap__picture" />
           <h1 className="amap__title">Notre Amap</h1>
@@ -45,7 +47,9 @@ const Home = () => {
           </p>
           <NavLink className="global-cta" to="/nos-activites/amap">En savoir plus</NavLink>
         </section>
+
         <section className="cards">
+
           <div className="card-container">
             <div className="card">
               <div className="card__front">
@@ -61,6 +65,7 @@ const Home = () => {
               </div>
             </div>
           </div>
+
           <div className="card-container">
             <div className="card">
               <div className="card__front">
@@ -76,7 +81,9 @@ const Home = () => {
               </div>
             </div>
           </div>
+
         </section>
+
       </div>
     </main>
   );
