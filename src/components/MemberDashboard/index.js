@@ -3,6 +3,7 @@
 // Local Imports
 import './member-dashboard.scss';
 import { toggleContract, toggleMembersList, toggleCalendar } from 'src/actions/user';
+import { closeBurgerMenu } from 'src/actions/menu';
 
 // Packages Imports
 import {
@@ -13,12 +14,21 @@ import {
   Users,
 } from 'react-feather';
 import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 
 // TODO : Modifier le format de la date d'expiration du panier
 // TODO (et surement de la date de fin d'adhésion)
 
 const MemberDashboard = () => {
   const dispatch = useDispatch();
+
+  useEffect(
+    () => {
+      window.scrollTo(0, 0);
+      dispatch(closeBurgerMenu());
+    },
+    [],
+  );
 
   const dropdownContract = useSelector((state) => state.user.dropdownContract);
   const dropdownMembersList = useSelector((state) => state.user.dropdownMembersList);

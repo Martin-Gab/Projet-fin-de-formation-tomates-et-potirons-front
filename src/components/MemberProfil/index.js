@@ -2,12 +2,24 @@
 
 // Local Imports
 import './member-profil.scss';
+import { closeBurgerMenu } from 'src/actions/menu';
 
 // Packages Imports
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 
 const MemberProfil = () => {
+  const dispatch = useDispatch();
+
   const user = useSelector((state) => state.user.user);
+
+  useEffect(
+    () => {
+      window.scrollTo(0, 0);
+      dispatch(closeBurgerMenu());
+    },
+    [],
+  );
 
   return (
     <main>

@@ -6,14 +6,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 // Local Imports
-import { toggleBurgerSubMenu } from 'src/actions/menu';
+import { toggleBurgerSubMenu, toggleUserSubMenu } from 'src/actions/menu';
 import { openLogin } from 'src/actions/login';
 import BurgerSubMenu from './burgerSubMenu';
+import UserSubMenu from './userSubMenu';
 
 const BurgerMenu = () => {
   const dispatch = useDispatch();
 
   const burgerSubMenu = useSelector((state) => state.menu.burgerSubMenu);
+  const userSubMenu = useSelector((state) => state.menu.userSubMenu);
 
   return (
     <nav className="burger-menu">
@@ -38,14 +40,32 @@ const BurgerMenu = () => {
       >
         Notre Agriculture
       </NavLink>
-      <div
-        className="burger-menu__links connect-cta"
-        onClick={() => {
-          dispatch(openLogin());
-        }}
-      >
-        Mon Espace
-      </div>
+      {(localStorage.getItem('token') === null) && (
+        <div
+          className="burger-menu__links connect-cta"
+          onClick={() => {
+            dispatch(openLogin());
+          }}
+        >
+          Mon Espace
+        </div>
+      )}
+      {(localStorage.getItem('token') !== null) && (
+        <>
+          <div
+            className="burger-menu__links"
+            onClick={() => {
+              dispatch(toggleUserSubMenu());
+            }}
+          >
+            Mon Espace {userSubMenu ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+          </div>
+          {userSubMenu && <UserSubMenu />}
+          <div className="burger-menu__links connect-cta">
+            Se déconnecter
+          </div>
+        </>
+      )}
     </nav>
   );
 };

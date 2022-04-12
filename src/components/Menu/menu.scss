@@ -27,10 +27,7 @@
 
     &__links {
         margin-bottom: .5rem;
-
-        &:first-child {
-            display: flex;
-        }
+        display: flex;
 
         &:hover {
             color: vars.$whiteText;
