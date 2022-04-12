@@ -1,13 +1,19 @@
 // Reducer for user
 
 // Actions Imports
-import { TOGGLE_CONTRACT, TOGGLE_MEMBERS_LIST, TOGGLE_CALENDAR } from 'src/actions/user';
+import {
+  TOGGLE_CONTRACT,
+  TOGGLE_MEMBERS_LIST,
+  TOGGLE_CALENDAR,
+  LOGOUT,
+} from 'src/actions/user';
 
 // Local Imports
 import data from 'src/data/userData';
 
 export const initialState = {
   user: data,
+  isConnected: false,
   dropdownContract: false,
   dropdownMembersList: false,
   dropdownCalendar: false,
@@ -31,6 +37,13 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         dropdownCalendar: !state.dropdownCalendar,
+      };
+
+    case LOGOUT:
+      return {
+        ...state,
+        user: null,
+        isConnected: false,
       };
 
     default:

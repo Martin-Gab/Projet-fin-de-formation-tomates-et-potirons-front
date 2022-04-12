@@ -15,6 +15,7 @@ import './menu.scss';
 import logo from 'src/assets/images/logo.png';
 import { toggleBurgerMenu, toggleSubMenu, toggleUserSubMenu } from 'src/actions/menu';
 import { openLogin } from 'src/actions/login';
+import { logout } from 'src/actions/user';
 import BurgerMenu from './burgerMenu';
 import SubMenu from './subMenu';
 import UserSubMenu from './userSubMenu';
@@ -25,6 +26,7 @@ const Menu = () => {
   const burgerMenu = useSelector((state) => state.menu.burgerMenu);
   const subMenu = useSelector((state) => state.menu.subMenu);
   const userSubMenu = useSelector((state) => state.menu.userSubMenu);
+  const isConnected = useSelector((state) => state.user.isConnected);
 
   return (
     <header>
@@ -63,7 +65,7 @@ const Menu = () => {
           </NavLink>
 
           {/* Display if user disconnected */}
-          {(localStorage.getItem('token') === null) && (
+          {!isConnected && (localStorage.getItem('token') === null) && (
             <div
               className="menu__links connect-cta"
               onClick={() => {
@@ -75,7 +77,7 @@ const Menu = () => {
           )}
 
           {/* Display if user connected */}
-          {(localStorage.getItem('token') !== null) && (
+          {isConnected && (localStorage.getItem('token') !== null) && (
             <>
               <div
                 className="menu__dropdown"
@@ -90,6 +92,9 @@ const Menu = () => {
               </div>
               <div
                 className="menu__links connect-cta"
+                onClick={() => {
+                  dispatch(logout());
+                }}
               >
                 Me déconnecter
               </div>

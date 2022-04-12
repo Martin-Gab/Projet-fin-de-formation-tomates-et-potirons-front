@@ -5,6 +5,7 @@ import axios from 'axios';
 
 // Local Imports
 import { SUBMIT_LOGIN } from 'src/actions/login';
+import { LOGOUT } from 'src/actions/user';
 
 const loginMiddelware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -24,6 +25,10 @@ const loginMiddelware = (store) => (next) => (action) => {
         .catch((error) => {
           console.log(error.response.data);
         });
+      break;
+
+    case LOGOUT:
+      localStorage.removeItem('token');
       break;
 
     default:
