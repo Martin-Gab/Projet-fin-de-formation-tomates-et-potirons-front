@@ -2,6 +2,34 @@
 
 @use 'src/styles/vars';
 
+.success-alert {
+    width: 295px;
+    box-sizing: border-box;
+    background-color: vars.$whiteText;
+    border: 2px solid vars.$primaryColor;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+    color: vars.$blackText;
+    font-weight: vars.$mediumWeight;
+    position: absolute;
+    z-index: 1;
+    right: -295px;
+    transition: right .5s ease-in-out;
+
+    &__close {
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        color: vars.$blackText;
+        cursor: pointer;
+    }
+
+    &--active {
+        right : 24px;
+    }
+}
+
 .amap-page {
     height: 100vh;
     width: 90%;
@@ -9,6 +37,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
 
     .amap-image {
         max-width: 90%;

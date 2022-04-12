@@ -5,13 +5,17 @@ import './amap.scss';
 import amapImage from 'src/assets/images/taxi-98.gif';
 import { openForm } from 'src/actions/membership';
 import { closeBurgerMenu, closeSubMenu } from 'src/actions/menu';
+import { toggleSubmitSuccess } from 'src/actions/modals';
 
 // Packages Imports
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { X } from 'react-feather';
 
 const Amap = () => {
   const dispatch = useDispatch();
+
+  const submitSuccessModalOpen = useSelector((state) => state.modals.submitSuccessModal);
 
   useEffect(
     () => {
@@ -24,6 +28,15 @@ const Amap = () => {
 
   return (
     <main>
+
+      <div className={submitSuccessModalOpen ? 'success-alert success-alert--active' : 'success-alert'}>
+        <div className="success-alert__close" onClick={() => dispatch(toggleSubmitSuccess())}>
+          <X size={20} />
+        </div>
+        Votre adhésion a bien été envoyée !<br />
+        Elle sera validée d'ici 24-48h.
+      </div>
+
       <section className="amap-page">
 
         <img src={amapImage} alt="illustration de l'amap" className="amap-image" />
@@ -50,6 +63,7 @@ const Amap = () => {
         </div>
 
       </section>
+
     </main>
   );
 };

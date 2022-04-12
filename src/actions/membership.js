@@ -6,6 +6,7 @@ export const TOGGLE_BASKET_OPTION = 'TOGGLE_BASKET_OPTION';
 export const OPEN_FORM = 'OPEN_FORM';
 export const CLOSE_FORM = 'CLOSE_FORM';
 export const SUBMIT_MEMBERSHIP = 'SUBMIT_MEMBERSHIP';
+export const SUBMIT_SUCCESS = 'SUBMIT_SUCCESS';
 
 // Action Creators
 export const changeInput = (newValue, fieldName) => ({
@@ -29,4 +30,8 @@ export const closeForm = () => ({
 
 export const submitMembership = () => ({
   type: SUBMIT_MEMBERSHIP,
+});
+
+export const submitSuccess = () => ({
+  type: SUBMIT_SUCCESS,
 });

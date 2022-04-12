@@ -1,6 +1,10 @@
 // == Local Imports
 import './styles.scss';
 
+// Packages Imports
+import { useSelector } from 'react-redux';
+import { Routes, Route } from 'react-router-dom';
+
 // Components Imports
 import Menu from 'src/components/Menu';
 import Home from 'src/components/Home';
@@ -10,10 +14,6 @@ import MembershipForm from 'src/components/MembershipForm';
 import LoginForm from 'src/components/LoginForm';
 import MemberDashboard from 'src/components/MemberDashboard';
 import MemberProfil from 'src/components/MemberProfil';
-
-// Packages Imports
-import { useSelector } from 'react-redux';
-import { Routes, Route } from 'react-router-dom';
 
 // == Composant
 const App = () => {
