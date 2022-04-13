@@ -4,6 +4,7 @@
 export const TOGGLE_CONTRACT = 'TOGGLE_CONTRACT';
 export const TOGGLE_MEMBERS_LIST = 'TOGGLE_MEMBERS_LIST';
 export const TOGGLE_CALENDAR = 'TOGGLE_CALENDAR';
+export const FETCH_USER_INFO = 'FETCH_USER_INFO';
 export const LOGGED = 'LOGGED';
 export const LOGOUT = 'LOGOUT';
 
@@ -18,6 +19,11 @@ export const toggleMembersList = () => ({
 
 export const toggleCalendar = () => ({
   type: TOGGLE_CALENDAR,
+});
+
+export const fetchUserInfo = (dataFromApi) => ({
+  type: FETCH_USER_INFO,
+  data: dataFromApi,
 });
 
 export const logged = () => ({

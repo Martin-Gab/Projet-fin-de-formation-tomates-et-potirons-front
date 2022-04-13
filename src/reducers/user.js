@@ -5,15 +5,13 @@ import {
   TOGGLE_CONTRACT,
   TOGGLE_MEMBERS_LIST,
   TOGGLE_CALENDAR,
+  FETCH_USER_INFO,
   LOGOUT,
   LOGGED,
 } from 'src/actions/user';
 
-// Local Imports
-import data from 'src/data/userData';
-
 export const initialState = {
-  user: data,
+  user: null,
   isConnected: false,
   dropdownContract: false,
   dropdownMembersList: false,
@@ -38,6 +36,12 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         dropdownCalendar: !state.dropdownCalendar,
+      };
+
+    case FETCH_USER_INFO:
+      return {
+        ...state,
+        user: action.data,
       };
 
     case LOGGED:

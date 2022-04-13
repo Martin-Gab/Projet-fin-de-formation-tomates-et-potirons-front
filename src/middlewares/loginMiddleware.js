@@ -20,9 +20,9 @@ const loginMiddelware = (store) => (next) => (action) => {
         },
       )
         .then((response) => {
+          localStorage.setItem('token', response.data.token);
           store.dispatch(successLogin());
           store.dispatch(logged());
-          localStorage.setItem('token', response.data.token);
         })
         .catch((error) => {
           console.log(error.response.data);
