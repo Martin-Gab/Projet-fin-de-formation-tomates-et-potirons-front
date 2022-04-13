@@ -18,10 +18,15 @@
 }
 
 .homepage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
 
     .hero {
         text-align: center;
         margin-bottom: 2rem;
+        max-width: 390px;
 
         &__title {
             font-size: vars.$mobileTitleFontSize;
@@ -38,6 +43,7 @@
     .amap {
         text-align: center;
         margin-bottom: 2rem;
+        max-width: 390px;
 
         &__picture {
             width: 100%;
@@ -121,6 +127,46 @@
                         margin-bottom: 1.5rem;
                     }
                 }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .homepage {
+
+        .hero {
+            max-width: 100%;
+            margin-bottom: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            &__title {
+                font-size: vars.$desktopTitleFontSize;
+                max-width: 70%;
+            }
+
+            &__banner {
+                max-width: 90%;
+            }
+        }
+
+        .amap {
+            max-width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            text-align: right;
+            margin-bottom: 10rem;
+
+            &__picture {
+                width: 45%;
+            }
+
+            .amap-content {
+                width: 45%;
             }
         }
     }

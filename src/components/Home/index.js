@@ -3,6 +3,7 @@
 // Local Imports
 import './home.scss';
 import heroBannerMobile from 'src/assets/images/hero-banner-mobile.png';
+import heroBannerDesktop from 'src/assets/images/hero-banner.png';
 import amapImage from 'src/assets/images/taxi-98.gif';
 import saleImage from 'src/assets/images/taxi-no-connection.gif';
 import partnerImage from 'src/assets/images/taxi-cooking.png';
@@ -11,12 +12,15 @@ import partnerImage from 'src/assets/images/taxi-cooking.png';
 import { NavLink } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { useMediaQuery } from 'react-responsive';
 
 // Actions Imports
 import { closeBurgerMenu, closeSubMenu } from 'src/actions/menu';
 
 const Home = () => {
   const dispatch = useDispatch();
+
+  const isDesktop = useMediaQuery({ query: '(min-width: 800px)' });
 
   useEffect(
     () => {
@@ -33,19 +37,21 @@ const Home = () => {
 
         <section className="hero">
           <h1 className="hero__title">Vos maraîchers cultivent pour vous.</h1>
-          <img src={heroBannerMobile} alt="illustration des activités de tomates et potirons" className="hero__banner" />
+          <img src={isDesktop ? heroBannerDesktop : heroBannerMobile} alt="illustration des activités de tomates et potirons" className="hero__banner" />
         </section>
 
         <section className="amap">
           <img src={amapImage} alt="panier de l'amap" className="amap__picture" />
-          <h1 className="amap__title">Notre Amap</h1>
-          <p className="amap__description">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Ipsam saepe ad quasi placeat quam sit,
-            suscipit minus facere doloremque voluptatum tempore animi.
-            Debitis ad nemo obcaecati ut repellendus id voluptatem!
-          </p>
-          <NavLink className="global-cta" to="/nos-activites/amap">En savoir plus</NavLink>
+          <div className="amap-content">
+            <h1 className="amap__title">Notre Amap</h1>
+            <p className="amap__description">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Ipsam saepe ad quasi placeat quam sit,
+              suscipit minus facere doloremque voluptatum tempore animi.
+              Debitis ad nemo obcaecati ut repellendus id voluptatem!
+            </p>
+            <NavLink className="global-cta" to="/nos-activites/amap">En savoir plus</NavLink>
+          </div>
         </section>
 
         <section className="cards">
