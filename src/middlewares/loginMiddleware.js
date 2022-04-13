@@ -12,7 +12,7 @@ const loginMiddelware = (store) => (next) => (action) => {
     case SUBMIT_LOGIN:
       axios.post(
         // URL
-        'http://localhost:8000/api/login',
+        'http://localhost:8000/api/login_check',
         // Data
         {
           username: store.getState().login.email,
