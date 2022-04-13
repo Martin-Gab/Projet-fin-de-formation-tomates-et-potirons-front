@@ -134,6 +134,9 @@
 
 @media screen and (min-width: 800px) {
     .homepage {
+        height: 250vh;
+        display: flex;
+        justify-content: space-around;
 
         .hero {
             max-width: 100%;
@@ -146,6 +149,7 @@
             &__title {
                 font-size: vars.$desktopTitleFontSize;
                 max-width: 70%;
+                margin-bottom: 4rem;
             }
 
             &__banner {
@@ -159,7 +163,7 @@
             align-items: center;
             justify-content: space-evenly;
             text-align: right;
-            margin-bottom: 10rem;
+            margin-bottom: 0;
 
             &__picture {
                 width: 45%;
@@ -167,6 +171,17 @@
 
             .amap-content {
                 width: 45%;
+            }
+        }
+
+        .cards {
+            flex-direction: row;
+            justify-content: space-evenly;
+            width: 100%;
+
+            .card-container {
+                width: 450px;
+                height: 550px;
             }
         }
     }
