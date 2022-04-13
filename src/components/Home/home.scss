@@ -180,6 +180,17 @@
             width: 100%;
 
             .card-container {
+                width: 350px;
+                height: 450px;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .homepage {
+        .cards {
+            .card-container {
                 width: 450px;
                 height: 550px;
             }
