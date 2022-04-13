@@ -5,12 +5,12 @@ body {
   font-family: vars.$mainFont;
   background-color: vars.$mainBackgroundColor;
   background-image: url('src/assets/images/background_mobile.png');
-  background-size: cover;
+  background-size: auto;
   background-repeat: no-repeat;
 }
 
 main {
-  min-width: 80%;
+  width: 90%;
   margin: 0 auto;
   position: relative;
   overflow: hidden;
@@ -26,19 +26,7 @@ main {
     font-family: vars.$mainFont;
     background-color: vars.$mainBackgroundColor;
     background-image: url('src/assets/images/background_desktop.png');
-    background-size: cover;
+    background-size: auto;
     background-repeat: no-repeat;
   }
 }
-
-/* 
-  // or you can import your own font
-  @font-face {
-    font-family: 'Roboto';
-    src: url('../assets/fonts/Roboto-Regular.ttf');
-  }
-
-  body {
-    font-family: 'Roboto', sans-serif;
-  }
-*/
