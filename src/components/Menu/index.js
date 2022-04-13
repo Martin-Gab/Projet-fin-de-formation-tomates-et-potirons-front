@@ -65,7 +65,7 @@ const Menu = () => {
           </NavLink>
 
           {/* Display if user disconnected */}
-          {!isConnected && (localStorage.getItem('token') === null) && (
+          {!isConnected && (
             <div
               className="menu__links connect-cta"
               onClick={() => {
@@ -77,7 +77,7 @@ const Menu = () => {
           )}
 
           {/* Display if user connected */}
-          {isConnected && (localStorage.getItem('token') !== null) && (
+          {isConnected && (
             <>
               <div
                 className="menu__dropdown"

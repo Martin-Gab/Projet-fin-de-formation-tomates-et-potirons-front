@@ -4,6 +4,7 @@
 export const TOGGLE_CONTRACT = 'TOGGLE_CONTRACT';
 export const TOGGLE_MEMBERS_LIST = 'TOGGLE_MEMBERS_LIST';
 export const TOGGLE_CALENDAR = 'TOGGLE_CALENDAR';
+export const LOGGED = 'LOGGED';
 export const LOGOUT = 'LOGOUT';
 
 // Action Creators
@@ -17,6 +18,10 @@ export const toggleMembersList = () => ({
 
 export const toggleCalendar = () => ({
   type: TOGGLE_CALENDAR,
+});
+
+export const logged = () => ({
+  type: LOGGED,
 });
 
 export const logout = () => ({

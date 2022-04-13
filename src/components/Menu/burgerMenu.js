@@ -16,6 +16,7 @@ const BurgerMenu = () => {
 
   const burgerSubMenu = useSelector((state) => state.menu.burgerSubMenu);
   const userBurgerSubMenu = useSelector((state) => state.menu.userBurgerSubMenu);
+  const isConnected = useSelector((state) => state.user.isConnected);
 
   return (
     <nav className="burger-menu">
@@ -40,7 +41,7 @@ const BurgerMenu = () => {
       >
         Notre Agriculture
       </NavLink>
-      {(localStorage.getItem('token') === null) && (
+      {!isConnected && (
         <div
           className="burger-menu__links connect-cta"
           onClick={() => {
@@ -50,7 +51,7 @@ const BurgerMenu = () => {
           Mon Espace
         </div>
       )}
-      {(localStorage.getItem('token') !== null) && (
+      {isConnected && (
         <>
           <div
             className="burger-menu__links"

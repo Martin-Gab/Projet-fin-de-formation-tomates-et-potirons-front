@@ -3,6 +3,7 @@ export const INPUT_CHANGE_LOGIN = 'INPUT_CHANGE_LOGIN';
 export const OPEN_LOGIN = 'OPEN_LOGIN';
 export const CLOSE_LOGIN = 'CLOSE_LOGIN';
 export const SUBMIT_LOGIN = 'SUBMIT_LOGIN';
+export const SUCCESS_LOGIN = 'SUCCESS_LOGIN';
 
 // Action Creators
 export const inputChangeLogin = (newValue, field) => ({
@@ -21,4 +22,8 @@ export const closeLogin = () => ({
 
 export const submitLogin = () => ({
   type: SUBMIT_LOGIN,
+});
+
+export const successLogin = () => ({
+  type: SUCCESS_LOGIN,
 });

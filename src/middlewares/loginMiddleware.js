@@ -4,8 +4,8 @@
 import axios from 'axios';
 
 // Local Imports
-import { SUBMIT_LOGIN } from 'src/actions/login';
-import { LOGOUT } from 'src/actions/user';
+import { SUBMIT_LOGIN, successLogin } from 'src/actions/login';
+import { LOGOUT, logged } from 'src/actions/user';
 
 const loginMiddelware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -15,12 +15,14 @@ const loginMiddelware = (store) => (next) => (action) => {
         'http://localhost:8000/api/login',
         // Data
         {
-          email: store.getState().login.email,
+          username: store.getState().login.email,
           password: store.getState().login.password,
         },
       )
         .then((response) => {
-          console.log(response);
+          store.dispatch(successLogin());
+          store.dispatch(logged());
+          localStorage.setItem('token', response.data.token);
         })
         .catch((error) => {
           console.log(error.response.data);

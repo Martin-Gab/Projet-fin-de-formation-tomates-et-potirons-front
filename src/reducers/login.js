@@ -1,7 +1,12 @@
 // Reducer for login form
 
 // Actions Imports
-import { INPUT_CHANGE_LOGIN, OPEN_LOGIN, CLOSE_LOGIN } from 'src/actions/login';
+import {
+  INPUT_CHANGE_LOGIN,
+  OPEN_LOGIN,
+  CLOSE_LOGIN,
+  SUCCESS_LOGIN,
+} from 'src/actions/login';
 
 export const initialState = {
   isOpen: false,
@@ -33,6 +38,14 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         isOpen: false,
+      };
+
+    case SUCCESS_LOGIN:
+      return {
+        ...state,
+        isOpen: false,
+        email: '',
+        password: '',
       };
 
     default:

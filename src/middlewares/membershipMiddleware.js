@@ -35,8 +35,8 @@ const membershipMiddleware = (store) => (next) => (action) => {
             amount: store.getState().membership.amount === '' ? '0.00' : store.getState().membership.amount,
           },
           donation: Number(store.getState().membership.donation),
-          membership_status: 0,
-          role: 0,
+          // membership_status: 0,
+          // role: 0,
         },
       )
         .then((response) => {

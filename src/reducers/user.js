@@ -6,6 +6,7 @@ import {
   TOGGLE_MEMBERS_LIST,
   TOGGLE_CALENDAR,
   LOGOUT,
+  LOGGED,
 } from 'src/actions/user';
 
 // Local Imports
@@ -37,6 +38,12 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         dropdownCalendar: !state.dropdownCalendar,
+      };
+
+    case LOGGED:
+      return {
+        ...state,
+        isConnected: true,
       };
 
     case LOGOUT:
