@@ -8,7 +8,7 @@ import {
   ChevronUp,
 } from 'react-feather';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 // Local Imports
 import './menu.scss';
@@ -22,6 +22,7 @@ import UserSubMenu from './userSubMenu';
 
 const Menu = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const burgerMenu = useSelector((state) => state.menu.burgerMenu);
   const subMenu = useSelector((state) => state.menu.subMenu);
@@ -94,6 +95,7 @@ const Menu = () => {
                 className="menu__links connect-cta"
                 onClick={() => {
                   dispatch(logout());
+                  navigate('/');
                 }}
               >
                 Me déconnecter

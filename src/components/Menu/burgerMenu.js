@@ -3,16 +3,18 @@
 // Packages Imports
 import { ChevronDown, ChevronUp } from 'react-feather';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 // Local Imports
 import { toggleBurgerSubMenu, toggleUserBurgerSubMenu } from 'src/actions/menu';
 import { openLogin } from 'src/actions/login';
+import { logout } from 'src/actions/user';
 import BurgerSubMenu from './burgerSubMenu';
 import UserBurgerSubMenu from './userBurgerSubMenu';
 
 const BurgerMenu = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const burgerSubMenu = useSelector((state) => state.menu.burgerSubMenu);
   const userBurgerSubMenu = useSelector((state) => state.menu.userBurgerSubMenu);
@@ -62,7 +64,13 @@ const BurgerMenu = () => {
             Mon Espace {userBurgerSubMenu ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
           </div>
           {userBurgerSubMenu && <UserBurgerSubMenu />}
-          <div className="burger-menu__links connect-cta">
+          <div
+            className="burger-menu__links connect-cta"
+            onClick={() => {
+              dispatch(logout());
+              navigate('/');
+            }}
+          >
             Se déconnecter
           </div>
         </>
