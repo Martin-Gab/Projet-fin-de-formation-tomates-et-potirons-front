@@ -15,6 +15,7 @@ import MembershipForm from 'src/components/MembershipForm';
 import LoginForm from 'src/components/LoginForm';
 import MemberDashboard from 'src/components/MemberDashboard';
 import MemberProfil from 'src/components/MemberProfil';
+import NotFound from 'src/components/NotFound';
 
 // Actions Imports
 import { logged } from 'src/actions/user';
@@ -48,6 +49,7 @@ const App = () => {
             <Route path="/mon-espace/profil" element={<MemberProfil />} />
           </>
         )}
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
       {isOpen && <MembershipForm />}
