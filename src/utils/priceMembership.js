@@ -31,3 +31,25 @@ export const calculateBasketPrice = (state) => {
 export const calculateTotalPrice = (membershipPrice, basketPrice, donation) => (
   membershipPrice + basketPrice + Number(donation)
 );
+
+export const monthlyPayment = (state) => {
+  let monthlyPaymentValue;
+
+  if (state.basketFull && state.fiveMonthChecked && state.monthlyChecked) {
+    monthlyPaymentValue = '(25€ x 5)';
+  }
+  else if (state.basketHalf && state.fiveMonthChecked && state.monthlyChecked) {
+    monthlyPaymentValue = '(12.5€ x 5)';
+  }
+  else if (state.basketFull && state.tenMonthChecked && state.monthlyChecked) {
+    monthlyPaymentValue = '(20€ x 10)';
+  }
+  else if (state.basketHalf && state.tenMonthChecked && state.monthlyChecked) {
+    monthlyPaymentValue = '(10€ x 10)';
+  }
+  else {
+    monthlyPaymentValue = '';
+  }
+
+  return monthlyPaymentValue;
+};

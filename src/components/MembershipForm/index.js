@@ -13,7 +13,7 @@ import {
   submitMembership,
 } from 'src/actions/membership';
 
-import { calculateBasketPrice, calculateTotalPrice } from '../../utils/priceMembership';
+import { calculateBasketPrice, calculateTotalPrice, monthlyPayment } from '../../utils/priceMembership';
 
 import BasketOption from './basketOption';
 
@@ -44,6 +44,8 @@ const MembershipForm = () => {
   const donation = useSelector((state) => state.membership.donation);
   const password = useSelector((state) => state.membership.password);
   const passwordVerification = useSelector((state) => state.membership.passwordVerification);
+  const fiveMonthChecked = useSelector((state) => state.membership.fiveMonthChecked);
+  const tenMonthChecked = useSelector((state) => state.membership.tenMonthChecked);
 
   return (
     <div className="form-modal">
@@ -241,7 +243,7 @@ const MembershipForm = () => {
               />
             </div>
             <div className="payment">
-              <h3 className="section-title">Réglement</h3>
+              <h3 className="section-title">Réglement Option Panier</h3>
               <div className="form-underline" />
               <div className="payment__type">
                 <label htmlFor="paymentTypeCash">
@@ -271,19 +273,21 @@ const MembershipForm = () => {
               </div>
               <div className="payment__choice">
                 {basketOption && (
-                  <>
-                    <label htmlFor="choiceTotal">
-                      <input
-                        type="radio"
-                        name="choice"
-                        id="choiceTotal"
-                        checked={totalChecked}
-                        onChange={() => {
-                          dispatch(changeInput(0, 'totalPayment'));
-                        }}
-                      />
-                      Total
-                    </label>
+                  <label htmlFor="choiceTotal">
+                    <input
+                      type="radio"
+                      name="choice"
+                      id="choiceTotal"
+                      checked={totalChecked}
+                      onChange={() => {
+                        dispatch(changeInput(0, 'totalPayment'));
+                      }}
+                    />
+                    Total
+                  </label>
+                )}
+                {basketOption && (fiveMonthChecked || tenMonthChecked) && (
+                  <div className="payment__choice">
                     <label htmlFor="choiceMonthly">
                       <input
                         type="radio"
@@ -296,10 +300,6 @@ const MembershipForm = () => {
                       />
                       Mensuel
                     </label>
-                  </>
-                )}
-                {checkOption && basketOption && (
-                  <div className="payment__choice">
                     <label htmlFor="choiceCustom" className="choice-custom">
                       <input
                         type="radio"
@@ -360,7 +360,9 @@ const MembershipForm = () => {
           <div className="summary">
             <p>Adhésion : 10€</p>
             <p>
-              Formule Panier : {calculateBasketPrice(useSelector((state) => state.membership))}€
+              Option Panier : {
+              calculateBasketPrice(useSelector((state) => state.membership))
+              }€ {monthlyPayment(useSelector((state) => state.membership))}
             </p>
             <p>
               Don : {
@@ -369,8 +371,11 @@ const MembershipForm = () => {
             </p>
             <h2>
               Prix total : {
-                // eslint-disable-next-line max-len
-                calculateTotalPrice(10, calculateBasketPrice(useSelector((state) => state.membership)), donation)
+                calculateTotalPrice(
+                  10,
+                  calculateBasketPrice(useSelector((state) => state.membership)),
+                  donation,
+                )
               }€
             </h2>
           </div>
