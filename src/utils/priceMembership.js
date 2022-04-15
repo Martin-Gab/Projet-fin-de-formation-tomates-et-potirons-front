@@ -53,3 +53,10 @@ export const monthlyPayment = (state) => {
 
   return monthlyPaymentValue;
 };
+
+export const checkCustomPayment = (state, totalPrice) => {
+  if ((state.nberCheck * state.amount) === totalPrice) {
+    return true;
+  }
+  return false;
+};

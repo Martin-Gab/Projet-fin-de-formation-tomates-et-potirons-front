@@ -5,6 +5,7 @@ import menuReducer from './menu';
 import loginReducer from './login';
 import userReducer from './user';
 import modalsReducer from './modals';
+import errorsReducer from './errors';
 
 const rootReducer = combineReducers({
   // nom du tiroir: reducer qui gère cette partie du state
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   login: loginReducer,
   user: userReducer,
   modals: modalsReducer,
+  errors: errorsReducer,
 });
 
 export default rootReducer;
