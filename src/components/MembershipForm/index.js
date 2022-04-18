@@ -13,15 +13,25 @@ import {
   submitMembership,
 } from 'src/actions/membership';
 
-import { calculateBasketPrice, calculateTotalPrice } from '../../utils/priceMembership';
+import { membershipCustomPaymentError } from 'src/actions/errors';
+
+import {
+  calculateBasketPrice,
+  calculateTotalPrice,
+  monthlyPayment,
+  checkCustomPayment,
+} from '../../utils/priceMembership';
 
 import BasketOption from './basketOption';
 
 const MembershipForm = () => {
   const dispatch = useDispatch();
 
+  const membershipStateGlobal = useSelector((state) => state.membership);
+
   const basketOption = useSelector((state) => state.membership.basketOption);
 
+  // Data for membership submission
   const firstName = useSelector((state) => state.membership.firstName);
   const lastName = useSelector((state) => state.membership.lastName);
   const address = useSelector((state) => state.membership.address);
@@ -44,6 +54,11 @@ const MembershipForm = () => {
   const donation = useSelector((state) => state.membership.donation);
   const password = useSelector((state) => state.membership.password);
   const passwordVerification = useSelector((state) => state.membership.passwordVerification);
+  const fiveMonthChecked = useSelector((state) => state.membership.fiveMonthChecked);
+  const tenMonthChecked = useSelector((state) => state.membership.tenMonthChecked);
+
+  // Error messages
+  const paymentErrorPersonalized = useSelector((state) => state.errors.customPaymentError);
 
   return (
     <div className="form-modal">
@@ -61,10 +76,21 @@ const MembershipForm = () => {
           action="POST"
           onSubmit={(evt) => {
             evt.preventDefault();
-            dispatch(submitMembership());
+            if (
+              // Function in utils directory => checking if the multiplication between the amount
+              // and the number of checks (personalized payment) = price of the basket option
+              checkCustomPayment(membershipStateGlobal, calculateBasketPrice(membershipStateGlobal))
+            ) {
+              dispatch(submitMembership());
+            }
+            else {
+              // Display the error message for the personalized payment
+              dispatch(membershipCustomPaymentError());
+            }
           }}
         >
           <div className="form-wrapper">
+
             <div className="infos">
               <h3 className="section-title">Informations Personnelles</h3>
               <div className="form-underline" />
@@ -107,6 +133,7 @@ const MembershipForm = () => {
                   type="text"
                   placeholder="Code Postal"
                   name="zipCode"
+                  maxLength={5}
                   value={zipCode}
                   onChange={(evt) => {
                     dispatch(changeInput(evt.target.value, 'zipCode'));
@@ -126,6 +153,7 @@ const MembershipForm = () => {
                 />
               </div>
             </div>
+
             <div className="contact">
               <h3 className="section-title">Contact</h3>
               <div className="form-underline" />
@@ -195,6 +223,7 @@ const MembershipForm = () => {
                 </div>
               </fieldset>
             </div>
+
             <div className="basket">
               <h3 className="section-title">Option Panier</h3>
               <div className="form-underline" />
@@ -213,6 +242,7 @@ const MembershipForm = () => {
               </div>
               {basketOption && <BasketOption />}
             </div>
+
             <div className="password">
               <h3 className="section-title">Authentification</h3>
               <div className="form-underline" />
@@ -240,8 +270,9 @@ const MembershipForm = () => {
                 }}
               />
             </div>
+
             <div className="payment">
-              <h3 className="section-title">Réglement</h3>
+              <h3 className="section-title">Réglement Option Panier</h3>
               <div className="form-underline" />
               <div className="payment__type">
                 <label htmlFor="paymentTypeCash">
@@ -271,19 +302,21 @@ const MembershipForm = () => {
               </div>
               <div className="payment__choice">
                 {basketOption && (
-                  <>
-                    <label htmlFor="choiceTotal">
-                      <input
-                        type="radio"
-                        name="choice"
-                        id="choiceTotal"
-                        checked={totalChecked}
-                        onChange={() => {
-                          dispatch(changeInput(0, 'totalPayment'));
-                        }}
-                      />
-                      Total
-                    </label>
+                  <label htmlFor="choiceTotal">
+                    <input
+                      type="radio"
+                      name="choice"
+                      id="choiceTotal"
+                      checked={totalChecked}
+                      onChange={() => {
+                        dispatch(changeInput(0, 'totalPayment'));
+                      }}
+                    />
+                    Total
+                  </label>
+                )}
+                {basketOption && (fiveMonthChecked || tenMonthChecked) && (
+                  <div className="payment__choice">
                     <label htmlFor="choiceMonthly">
                       <input
                         type="radio"
@@ -296,10 +329,6 @@ const MembershipForm = () => {
                       />
                       Mensuel
                     </label>
-                  </>
-                )}
-                {checkOption && basketOption && (
-                  <div className="payment__choice">
                     <label htmlFor="choiceCustom" className="choice-custom">
                       <input
                         type="radio"
@@ -324,6 +353,7 @@ const MembershipForm = () => {
                           onChange={(evt) => {
                             dispatch(changeInput(evt.target.value, 'numberCheck'));
                           }}
+                          required
                         />
                         <input
                           type="number"
@@ -335,7 +365,11 @@ const MembershipForm = () => {
                           onChange={(evt) => {
                             dispatch(changeInput(evt.target.value, 'amount'));
                           }}
+                          required
                         />
+                        <div className={paymentErrorPersonalized ? 'error-message error-message--active' : 'error-message'}>
+                          La somme de ces 2 valeurs ne correspond pas au prix de l'option panier !
+                        </div>
                       </>
                     )}
                   </div>
@@ -357,10 +391,13 @@ const MembershipForm = () => {
               </div>
             </div>
           </div>
+
           <div className="summary">
             <p>Adhésion : 10€</p>
             <p>
-              Formule Panier : {calculateBasketPrice(useSelector((state) => state.membership))}€
+              Option Panier : {
+              calculateBasketPrice(useSelector((state) => state.membership))
+              }€ {monthlyPayment(useSelector((state) => state.membership))}
             </p>
             <p>
               Don : {
@@ -369,14 +406,19 @@ const MembershipForm = () => {
             </p>
             <h2>
               Prix total : {
-                // eslint-disable-next-line max-len
-                calculateTotalPrice(10, calculateBasketPrice(useSelector((state) => state.membership)), donation)
+                calculateTotalPrice(
+                  10,
+                  calculateBasketPrice(useSelector((state) => state.membership)),
+                  donation,
+                )
               }€
             </h2>
           </div>
+
           <button type="submit">
             Valider mon adhésion
           </button>
+
         </form>
       </div>
     </div>
