@@ -37,6 +37,7 @@ const VenteDirectMap = () => {
       googleMapsApiKey={apiKey}
     >
       <GoogleMap
+        mapContainerClassName="vente-direct-map"
         mapContainerStyle={mobileContainerStyle}
         center={{
           lat: mapDataVenteDirect.coordinates[0],

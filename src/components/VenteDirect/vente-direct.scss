@@ -20,3 +20,44 @@
         color: blue;
     }
 }
+
+.vente-direct-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: vars.$blackText;
+    text-align: center;
+
+    .vente-direct-map {
+        margin: 1rem 0;
+    }
+
+    .vente-direct-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 1rem;
+
+        &__title {
+            font-weight: vars.$boldWeight;
+            font-size: vars.$mobileTitleFontSize;
+            margin-bottom: .5rem;
+        }
+
+        &__description {
+            margin-bottom: .5rem;
+        }
+
+        &__location {
+            margin-bottom: .3rem;
+        }
+
+        .vente-direct-highlight {
+            background-color: vars.$primaryColor;
+            padding: 1rem;
+            color: vars.$whiteText;
+            border-radius: 10px;
+            font-weight: vars.$mediumWeight;
+        }
+    }
+}
