@@ -14,6 +14,7 @@ import {
   InfoWindow,
 } from '@react-google-maps/api';
 import { useSelector, useDispatch } from 'react-redux';
+import { Map } from 'react-feather';
 
 // Google Map container style for size
 const mobileContainerStyle = {
@@ -64,6 +65,8 @@ const VenteDirectMap = () => {
           >
             <div className="info-window">
               <h2 className="info-window__title">{mapDataVenteDirect.name}</h2>
+              <p className="info-window__address">{mapDataVenteDirect.address}</p>
+              <a href={mapDataVenteDirect.itineraryLink} className="info-window__itinerary">Itinéraire <Map size={12} /></a>
             </div>
           </InfoWindow>
         )}

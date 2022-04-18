@@ -1,3 +1,22 @@
 // Stylesheet for Vente Direct page
 
 @use 'src/styles/vars';
+
+.info-window {
+    color: vars.$blackText;
+
+    &__title {
+        font-size: .9rem;
+        font-weight: vars.$mediumWeight;
+    }
+
+    &__address {
+        font-size: .7rem;
+        margin-bottom: .3rem;
+    }
+
+    &__itinerary {
+        font-size: .7rem;
+        color: blue;
+    }
+}
