@@ -3,6 +3,9 @@
 // Local Imports
 import { apiKey, mapDataVenteDirect } from 'src/data/googleMapsData';
 
+// Actions Imports
+import { toggleVenteInfoWindow } from 'src/actions/maps';
+
 // Packages Imports
 import {
   GoogleMap,
@@ -45,13 +48,18 @@ const VenteDirectMap = () => {
             lat: mapDataVenteDirect.coordinates[0],
             lng: mapDataVenteDirect.coordinates[1],
           }}
-          clickable
+          onClick={() => {
+            dispatch(toggleVenteInfoWindow());
+          }}
         />
         {infoWindowOpen && (
           <InfoWindow
             position={{
               lat: mapDataVenteDirect.coordinates[0],
               lng: mapDataVenteDirect.coordinates[1],
+            }}
+            onCloseClick={() => {
+              dispatch(toggleVenteInfoWindow());
             }}
           >
             <div className="info-window">
