@@ -30,6 +30,8 @@
 
     .vente-direct-map {
         margin: 1rem 0;
+        border-radius: 10px;
+        overflow: hidden;
     }
 
     .vente-direct-content {
@@ -58,6 +60,46 @@
             color: vars.$whiteText;
             border-radius: 10px;
             font-weight: vars.$mediumWeight;
+        }
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .vente-direct-wrapper {
+        flex-direction: row;
+        justify-content: space-between;
+        height: calc(100vh - 5rem);
+
+        .vente-direct-map {
+            width: fit-content;
+            order: 2;
+        }
+
+        .vente-direct-content {
+            width: 45%;
+            order: 1;
+            align-items: flex-start;
+
+            &__description {
+                text-align: left;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .vente-direct-wrapper {
+        justify-content: space-evenly;
+
+        .vente-direct-content {
+            &__title {
+                margin-bottom: 2rem;
+            }
+
+            &__description {
+                margin-bottom: 2rem;
+                width: 80%;
+            }
         }
     }
 }

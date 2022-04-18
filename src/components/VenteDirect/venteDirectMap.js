@@ -15,11 +15,17 @@ import {
 } from '@react-google-maps/api';
 import { useSelector, useDispatch } from 'react-redux';
 import { Map } from 'react-feather';
+import { useMediaQuery } from 'react-responsive';
 
 // Google Map container style for size
 const mobileContainerStyle = {
   width: '270px',
   height: '270px',
+};
+
+const tabletContainerStyle = {
+  width: '320px',
+  height: '320px',
 };
 
 const desktopContainerStyle = {
@@ -32,47 +38,59 @@ const VenteDirectMap = () => {
 
   const infoWindowOpen = useSelector((state) => state.maps.infoVenteIsOpen);
 
+  const isTablet = useMediaQuery({ query: '(min-width: 800px)' });
+  const isDesktop = useMediaQuery({ query: '(min-width: 1024px)' });
+
+  let containerStyle = mobileContainerStyle;
+  if (isTablet) {
+    containerStyle = tabletContainerStyle;
+  }
+  if (isDesktop) {
+    containerStyle = desktopContainerStyle;
+  }
+
   return (
-    <LoadScript
-      googleMapsApiKey={apiKey}
-    >
-      <GoogleMap
-        mapContainerClassName="vente-direct-map"
-        mapContainerStyle={mobileContainerStyle}
-        center={{
-          lat: mapDataVenteDirect.coordinates[0],
-          lng: mapDataVenteDirect.coordinates[1],
-        }}
-        zoom={11}
+    <div className="vente-direct-map">
+      <LoadScript
+        googleMapsApiKey={apiKey}
       >
-        <Marker
-          position={{
+        <GoogleMap
+          mapContainerStyle={containerStyle}
+          center={{
             lat: mapDataVenteDirect.coordinates[0],
             lng: mapDataVenteDirect.coordinates[1],
           }}
-          onClick={() => {
-            dispatch(toggleVenteInfoWindow());
-          }}
-        />
-        {infoWindowOpen && (
-          <InfoWindow
+          zoom={11}
+        >
+          <Marker
             position={{
               lat: mapDataVenteDirect.coordinates[0],
               lng: mapDataVenteDirect.coordinates[1],
             }}
-            onCloseClick={() => {
+            onClick={() => {
               dispatch(toggleVenteInfoWindow());
             }}
-          >
-            <div className="info-window">
-              <h2 className="info-window__title">{mapDataVenteDirect.name}</h2>
-              <p className="info-window__address">{mapDataVenteDirect.address}</p>
-              <a href={mapDataVenteDirect.itineraryLink} className="info-window__itinerary">Itinéraire <Map size={12} /></a>
-            </div>
-          </InfoWindow>
-        )}
-      </GoogleMap>
-    </LoadScript>
+          />
+          {infoWindowOpen && (
+            <InfoWindow
+              position={{
+                lat: mapDataVenteDirect.coordinates[0],
+                lng: mapDataVenteDirect.coordinates[1],
+              }}
+              onCloseClick={() => {
+                dispatch(toggleVenteInfoWindow());
+              }}
+            >
+              <div className="info-window">
+                <h2 className="info-window__title">{mapDataVenteDirect.name}</h2>
+                <p className="info-window__address">{mapDataVenteDirect.address}</p>
+                <a href={mapDataVenteDirect.itineraryLink} className="info-window__itinerary">Itinéraire <Map size={12} /></a>
+              </div>
+            </InfoWindow>
+          )}
+        </GoogleMap>
+      </LoadScript>
+    </div>
   );
 };
 
