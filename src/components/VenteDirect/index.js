@@ -3,10 +3,17 @@
 // Local Imports
 import './vente-direct.scss';
 
+// Sub Component Import
+import VenteDirectMap from './venteDirectMap';
+
 const VenteDirect = () => (
   <main>
     <div className="vente-direct-wrapper">
-      <div className="vente-direct-map">Ici la google map</div>
+
+      <div className="vente-direct-map">
+        <VenteDirectMap />
+      </div>
+
       <div className="vente-direct-content">
         <h1 className="vente-direct-content__title">Vente Direct</h1>
         <p className="vente-direct-content__description">
@@ -26,6 +33,7 @@ const VenteDirect = () => (
           Samedi : 09h-12H30
         </p>
       </div>
+
     </div>
   </main>
 );
