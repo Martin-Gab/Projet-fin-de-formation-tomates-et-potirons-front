@@ -16,6 +16,7 @@ import LoginForm from 'src/components/LoginForm';
 import MemberDashboard from 'src/components/MemberDashboard';
 import MemberProfil from 'src/components/MemberProfil';
 import NotFound from 'src/components/NotFound';
+import VenteDirect from 'src/components/VenteDirect';
 
 // Actions Imports
 import { logged } from 'src/actions/user';
@@ -43,6 +44,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/nos-activites/amap" element={<Amap />} />
+        <Route path="/nos-activites/vente-direct" element={<VenteDirect />} />
         {isConnected && (
           <>
             <Route path="/mon-espace/tableau-de-bord" element={<MemberDashboard />} />
