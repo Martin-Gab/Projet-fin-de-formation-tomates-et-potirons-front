@@ -74,7 +74,14 @@ const NosPartenairesMap = () => {
               <div className="info-window">
                 <h2 className="info-window__title">{selectedPartner.name}</h2>
                 <p className="info-window__address">{selectedPartner.address}</p>
-                <a href={selectedPartner.itineraryLink} className="info-window__itinerary">Itinéraire <Map size={12} /></a>
+                <a
+                  href={selectedPartner.itineraryLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="info-window__itinerary"
+                >
+                  Itinéraire <Map size={12} />
+                </a>
               </div>
             </InfoWindow>
           )}

@@ -1,3 +1,108 @@
 // Stylesheet for Nos Partenaires page
 
 @use 'src/styles/vars';
+
+.info-window {
+    color: vars.$blackText;
+
+    &__title {
+        font-size: .9rem;
+        font-weight: vars.$mediumWeight;
+    }
+
+    &__address {
+        font-size: .7rem;
+        margin-bottom: .3rem;
+    }
+
+    &__itinerary {
+        font-size: .7rem;
+        color: blue;
+    }
+}
+
+.our-partners-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: vars.$blackText;
+    text-align: center;
+
+    .our-partners-map{
+        margin: 1rem 0;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .partners-list{
+        margin-bottom: 1rem;
+
+        &__title {
+            font-weight: vars.$boldWeight;
+            font-size: vars.$mobileTitleFontSize;
+            margin-bottom: 1rem;
+        }
+
+        &__item {
+            margin-bottom: .5rem;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            .partner-name {
+                font-size: 1.2rem;
+                font-weight: vars.$mediumWeight;
+                margin-bottom: .1rem;
+            }
+
+            .partner-address {
+                margin-bottom: .1rem;
+            }
+
+            .partner-link {
+                color: blue;
+                text-decoration: underline;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .our-partners-wrapper {
+        flex-direction: row;
+        justify-content: space-between;
+        height: calc(100vh - 5rem);
+
+        .our-partners-map {
+            width: fit-content;
+            order: 2;
+        }
+
+        .partners-list {
+            order: 1;
+            width: 45%;
+            text-align: left;
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .our-partners-wrapper {
+        justify-content: space-evenly;
+
+        .our-partners-map {
+            &__title {
+                font-size: vars.$desktopTitleFontSize;
+                margin-bottom: 2rem;
+            }
+        }
+
+        .partners-list {
+            order: 1;
+            width: 45%;
+            text-align: left;
+        }
+    }
+}
