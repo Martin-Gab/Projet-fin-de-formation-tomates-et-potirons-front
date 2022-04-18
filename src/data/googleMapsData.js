@@ -3,6 +3,22 @@
 // API Key in order to use google maps API
 export const apiKey = 'AIzaSyCZA3ria9VajlrWxUuSQthfMM36ejDUGQk';
 
+// Google Map container style for size
+export const mobileContainerStyle = {
+  width: '270px',
+  height: '270px',
+};
+
+export const tabletContainerStyle = {
+  width: '320px',
+  height: '320px',
+};
+
+export const desktopContainerStyle = {
+  width: '500px',
+  height: '500px',
+};
+
 // Data for the Vente Direct page
 export const mapDataVenteDirect = {
   id: 1,

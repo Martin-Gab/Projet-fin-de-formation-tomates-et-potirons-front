@@ -1,7 +1,13 @@
 // Sub-Component with the google map of the farm location
 
 // Local Imports
-import { apiKey, mapDataVenteDirect } from 'src/data/googleMapsData';
+import {
+  apiKey,
+  mapDataVenteDirect,
+  mobileContainerStyle,
+  tabletContainerStyle,
+  desktopContainerStyle,
+} from 'src/data/googleMapsData';
 
 // Actions Imports
 import { toggleVenteInfoWindow } from 'src/actions/maps';
@@ -16,22 +22,6 @@ import {
 import { useSelector, useDispatch } from 'react-redux';
 import { Map } from 'react-feather';
 import { useMediaQuery } from 'react-responsive';
-
-// Google Map container style for size
-const mobileContainerStyle = {
-  width: '270px',
-  height: '270px',
-};
-
-const tabletContainerStyle = {
-  width: '320px',
-  height: '320px',
-};
-
-const desktopContainerStyle = {
-  width: '500px',
-  height: '500px',
-};
 
 const VenteDirectMap = () => {
   const dispatch = useDispatch();
