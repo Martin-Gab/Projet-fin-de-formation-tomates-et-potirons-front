@@ -76,16 +76,24 @@ const MembershipForm = () => {
           action="POST"
           onSubmit={(evt) => {
             evt.preventDefault();
-            if (
-              // Function in utils directory => checking if the multiplication between the amount
-              // and the number of checks (personalized payment) = price of the basket option
-              checkCustomPayment(membershipStateGlobal, calculateBasketPrice(membershipStateGlobal))
-            ) {
-              dispatch(submitMembership());
+            if (customChecked) {
+              if (
+                // Function in utils directory => checking if the multiplication between the amount
+                // and the number of checks (personalized payment) = price of the basket option
+                checkCustomPayment(
+                  membershipStateGlobal,
+                  calculateBasketPrice(membershipStateGlobal),
+                )
+              ) {
+                dispatch(submitMembership());
+              }
+              else {
+                // Display the error message for the personalized payment
+                dispatch(membershipCustomPaymentError());
+              }
             }
             else {
-              // Display the error message for the personalized payment
-              dispatch(membershipCustomPaymentError());
+              dispatch(submitMembership());
             }
           }}
         >
