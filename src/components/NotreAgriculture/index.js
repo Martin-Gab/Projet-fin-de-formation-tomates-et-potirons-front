@@ -1,9 +1,35 @@
 // Component for "Notre Agriculture" page
 
+// Local Imports
 import './notre-agriculture.scss';
+import pictureAgriculture from 'src/assets/images/notre-agriculture.jpeg';
 
 const NotreAgriculture = () => (
-  <div>Ici la page Notre Agriculture</div>
+  <main>
+    <div className="notre-agriculture-wrapper">
+
+      <img src={pictureAgriculture} alt="légumes récoltéeschez tomates et potirons" className="notre-agriculture-picture" />
+
+      <div className="notre-agriculture-content">
+        <h1 className="notre-agriculture-content__title">Notre Agriculture</h1>
+        <p className="notre-agriculture-content__text">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          Molestias quia quos quaerat velit enim dicta doloribus neque
+          sequi aspernatur ipsam provident consequuntur maxime,
+          consectetur architecto natus id ipsa magni dolorum. <br />
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          Molestias quia quos quaerat velit enim dicta doloribus neque
+          sequi aspernatur ipsam provident consequuntur maxime,
+          consectetur architecto natus id ipsa magni dolorum. <br />
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          Molestias quia quos quaerat velit enim dicta doloribus neque
+          sequi aspernatur ipsam provident consequuntur maxime,
+          consectetur architecto natus id ipsa magni dolorum. <br />
+        </p>
+      </div>
+
+    </div>
+  </main>
 );
 
 export default NotreAgriculture;

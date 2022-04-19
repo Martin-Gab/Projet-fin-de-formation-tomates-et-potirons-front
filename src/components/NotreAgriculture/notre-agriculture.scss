@@ -1,3 +1,54 @@
 // Stylesheet for "Notre Agriculture" page
 
 @use 'src/styles/vars';
+
+.notre-agriculture-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem 0;
+
+    .notre-agriculture-picture {
+        width: 100%;
+        max-width: 405px;
+        border-radius: 10px;
+        margin-bottom: 2rem;
+    }
+
+    .notre-agriculture-content {
+        width: 90%;
+        max-width: 490px;
+        text-align: center;
+        color: vars.$blackText;
+
+        &__title {
+            font-size: vars.$mobileTitleFontSize;
+            font-weight: vars.$boldWeight;
+            margin-bottom: .5rem;
+        }
+
+        &__text {
+            line-height: 1.2rem;
+        }
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .notre-agriculture-wrapper {
+        flex-direction: row;
+        justify-content: space-around;
+        max-width: 1200px;
+        margin: 2rem auto;
+        min-height: calc(100vh - 9rem);
+
+        .notre-agriculture-picture {
+            width: 48%;
+            margin-bottom: 0;
+        }
+    
+        .notre-agriculture-content {
+            width: 48%;
+            text-align: right;
+        }
+    }
+}
