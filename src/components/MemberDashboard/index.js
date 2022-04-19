@@ -5,6 +5,10 @@ import './member-dashboard.scss';
 import { toggleContract, toggleMembersList, toggleCalendar } from 'src/actions/user';
 import { closeBurgerMenu } from 'src/actions/menu';
 
+// Utils function Import
+// Function to change the date format
+import formatDate from 'src/utils/formatDate';
+
 // Packages Imports
 import {
   ShoppingBag,
@@ -99,13 +103,13 @@ const MemberDashboard = () => {
             {dropdownContract && (
               <div className="contract">
                 <div className="contract__item">{statusMessage} <div className={cssClassStatus} /></div>
-                <div className="contract__item">Date de fin de l'adhésion : {user.expirationDate === null ? '-' : user.expirationDate}</div>
+                <div className="contract__item">Date de fin de l'adhésion : {user.expirationDate === null ? '-' : formatDate(user.expirationDate.substr(0, 10))}</div>
                 <div className="contract__item">Mode de réglement : {user.paymentType === 0 ? 'Chèques' : 'Espèces'}</div>
                 <div className="contract__item">Modalité de paiement : {paymentModality} {user.formule.choice === 2 ? `(${user.formule.nberCheck} x ${user.formule.amount}€)` : ''}</div>
                 <div className="contract__item">Option Panier : {user.formule.basketType !== 0 ? 'Oui' : 'Non' }</div>
                 <div className="contract__item">Type de Panier : {basketType}</div>
                 <div className="contract__item">Durée option Panier : {user.formule.duration} mois</div>
-                <div className="contract__item">Fin de l'option : {user.formule.expirationDate === null ? '-' : user.formule.expirationDate}</div>
+                <div className="contract__item">Fin de l'option : {user.formule.expirationDate === null ? '-' : formatDate(user.formule.expirationDate.substr(0, 10))}</div>
                 <div className="contract__item">Don : {user.donation === null || user.donation === 0 ? '-' : `${user.donation}€`}</div>
               </div>
             )}
