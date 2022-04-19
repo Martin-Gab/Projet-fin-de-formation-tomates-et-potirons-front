@@ -19,6 +19,7 @@ import NotFound from 'src/components/NotFound';
 import VenteDirect from 'src/components/VenteDirect';
 import NosPartenaires from 'src/components/NosPartenaires';
 import VosMaraichers from 'src/components/VosMaraichers';
+import NotreAgriculture from 'src/components/NotreAgriculture';
 
 // Actions Imports
 import { logged } from 'src/actions/user';
@@ -50,6 +51,7 @@ const App = () => {
         <Route path="/nos-activites/vente-direct" element={<VenteDirect />} />
         <Route path="/nos-activites/nos-partenaires" element={<NosPartenaires />} />
         <Route path="/vos-maraichers" element={<VosMaraichers />} />
+        <Route path="/notre-agriculture" element={<NotreAgriculture />} />
         {isConnected && (
           <>
             <Route path="/mon-espace/tableau-de-bord" element={<MemberDashboard />} />
