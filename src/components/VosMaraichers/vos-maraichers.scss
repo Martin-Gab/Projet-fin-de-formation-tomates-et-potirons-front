@@ -1,3 +1,70 @@
 // Stylesheet for "Vos Maraichers" page
 
 @use 'src/styles/vars';
+
+.vos-maraichers-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem 0;
+    color: vars.$blackText;
+
+    .vos-maraichers-picture {
+        width: 100%;
+        max-width: 320px;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+    }
+
+    .vos-maraichers-content {
+        text-align: center;
+        width: 90%;
+        margin-bottom: 1rem;
+        
+        &__name {
+            font-size: vars.$mobileTitleFontSize;
+            font-weight: vars.$boldWeight;
+            margin-bottom: .5rem;
+        }
+
+        &__description {
+            line-height: 1.2rem;
+        }
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .vos-maraichers-wrapper {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        max-width: 930px;
+        margin: 2rem auto;
+
+        .vos-maraichers-picture {
+            width: 48%;
+
+            &--first {
+                order: 1;
+            }
+
+            &--second {
+                order: 4;
+            }
+        }
+
+        .vos-maraichers-content {
+            width: 48%;
+
+            &--first {
+                order: 2;
+                text-align: right;
+            }
+
+            &--second {
+                order: 3;
+                text-align: left;
+            }
+        }
+    }
+}
