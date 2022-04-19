@@ -31,6 +31,7 @@ const loginMiddelware = (store) => (next) => (action) => {
 
     case LOGOUT:
       localStorage.removeItem('token');
+      localStorage.removeItem('userInfos');
       break;
 
     default:

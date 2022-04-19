@@ -33,8 +33,9 @@ const MemberDashboard = () => {
   const dropdownContract = useSelector((state) => state.user.dropdownContract);
   const dropdownMembersList = useSelector((state) => state.user.dropdownMembersList);
   const dropdownCalendar = useSelector((state) => state.user.dropdownCalendar);
-  // Infos concerning the connected user, stored in the state and retrieved from API
-  const user = useSelector((state) => state.user.user);
+
+  // Infos concerning the connected user, stored in the localStorage and retrieved from API
+  const user = JSON.parse(localStorage.getItem('userInfos'));
 
   // Changing CSS class for status div according to status
   // Changing message according to status

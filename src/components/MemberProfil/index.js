@@ -5,13 +5,14 @@ import './member-profil.scss';
 import { closeBurgerMenu } from 'src/actions/menu';
 
 // Packages Imports
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
 const MemberProfil = () => {
   const dispatch = useDispatch();
 
-  const user = useSelector((state) => state.user.user);
+  // Infos concerning the connected user, stored in the localStorage and retrieved from API
+  const user = JSON.parse(localStorage.getItem('userInfos'));
 
   useEffect(
     () => {
@@ -33,7 +34,7 @@ const MemberProfil = () => {
           <div className="profil__item">Adresse email : {user.email}</div>
           <div className="profil__item">Numéro de téléphone : {user.phone}</div>
           <div className="profil__item">
-            Mot de passe : <input type="password" value={user.password} className="profil__password" readOnly />
+            Mot de passe : <input type="password" value="nothing" className="profil__password" readOnly />
           </div>
           <div className="cta-wrapper">
             <div className="profil__cta">Modifier mon Profil</div>

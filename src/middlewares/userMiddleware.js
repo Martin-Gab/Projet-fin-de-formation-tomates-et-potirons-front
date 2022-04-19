@@ -22,6 +22,7 @@ const userMiddelware = (store) => (next) => (action) => {
       )
         .then((response) => {
           store.dispatch(fetchUserInfo(response.data));
+          localStorage.setItem('userInfos', JSON.stringify(response.data));
         })
         .catch((error) => {
           console.log(error.response.data);

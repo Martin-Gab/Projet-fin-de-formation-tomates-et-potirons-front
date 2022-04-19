@@ -37,6 +37,7 @@ const App = () => {
         dispatch(logged());
       }
     },
+    [],
   );
 
   return (
