@@ -18,6 +18,7 @@ import MemberProfil from 'src/components/MemberProfil';
 import NotFound from 'src/components/NotFound';
 import VenteDirect from 'src/components/VenteDirect';
 import NosPartenaires from 'src/components/NosPartenaires';
+import VosMaraichers from 'src/components/VosMaraichers';
 
 // Actions Imports
 import { logged } from 'src/actions/user';
@@ -48,6 +49,7 @@ const App = () => {
         <Route path="/nos-activites/amap" element={<Amap />} />
         <Route path="/nos-activites/vente-direct" element={<VenteDirect />} />
         <Route path="/nos-activites/nos-partenaires" element={<NosPartenaires />} />
+        <Route path="/vos-maraichers" element={<VosMaraichers />} />
         {isConnected && (
           <>
             <Route path="/mon-espace/tableau-de-bord" element={<MemberDashboard />} />
