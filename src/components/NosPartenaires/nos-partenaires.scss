@@ -74,6 +74,8 @@
         flex-direction: row;
         justify-content: space-between;
         height: calc(100vh - 5rem);
+        max-width: 1225px;
+        margin: 0 auto;
 
         .our-partners-map {
             width: fit-content;
