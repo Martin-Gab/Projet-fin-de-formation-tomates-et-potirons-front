@@ -10,6 +10,9 @@ import { closeBurgerMenu, closeSubMenu } from 'src/actions/menu';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
+// Data Content Import
+import { contentVenteDirect } from 'src/data/content';
+
 // Sub Component Import
 import VenteDirectMap from './venteDirectMap';
 
@@ -32,23 +35,20 @@ const VenteDirect = () => {
         <VenteDirectMap />
 
         <div className="vente-direct-content">
-          <h1 className="vente-direct-content__title">Vente Direct</h1>
+          <h1 className="vente-direct-content__title">{contentVenteDirect.title}</h1>
           <p className="vente-direct-content__description">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Cum sit officia earum veniam est! Ipsa necessitatibus,
-            soluta sequi quae repudiandae excepturi in dolores fugiat
-            temporibus corrupti repellat pariatur est tempora.
+            {contentVenteDirect.description}
           </p>
           <div className="vente-direct-highlight">
             <p className="vente-direct-content__location">
-              A la ferme <br />
-              27 route d'Anxaumont <br />
-              86800 Sèvres-Anxaumont
+              {contentVenteDirect.location.title} <br />
+              {contentVenteDirect.location.road} <br />
+              {contentVenteDirect.location.zipAndCity}
             </p>
             <p className="vente-direct-content__hours">
-              Mercredi : 14h-17h30 <br />
-              Vendredi : 14h-17h30 <br />
-              Samedi : 09h-12H30
+              {contentVenteDirect.hours.first} <br />
+              {contentVenteDirect.hours.second} <br />
+              {contentVenteDirect.hours.third}
             </p>
           </div>
         </div>
