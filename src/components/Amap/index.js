@@ -2,7 +2,6 @@
 
 // Local Imports
 import './amap.scss';
-import amapImage from 'src/assets/images/taxi-98.gif';
 import { openForm } from 'src/actions/membership';
 import { closeBurgerMenu, closeSubMenu } from 'src/actions/menu';
 import { toggleSubmitSuccess } from 'src/actions/modals';
