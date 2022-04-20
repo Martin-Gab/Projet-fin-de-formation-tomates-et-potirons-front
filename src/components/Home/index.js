@@ -4,9 +4,6 @@
 import './home.scss';
 import heroBannerMobile from 'src/assets/images/hero-banner-mobile.png';
 import heroBannerDesktop from 'src/assets/images/hero-banner.png';
-import amapImage from 'src/assets/images/taxi-98.gif';
-import saleImage from 'src/assets/images/taxi-no-connection.gif';
-import partnerImage from 'src/assets/images/taxi-cooking.png';
 
 // Packages Imports
 import { NavLink } from 'react-router-dom';
@@ -16,6 +13,9 @@ import { useMediaQuery } from 'react-responsive';
 
 // Actions Imports
 import { closeBurgerMenu, closeSubMenu } from 'src/actions/menu';
+
+// Data content Imports
+import { homepageAmap, homepageCards } from 'src/data/content';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -41,52 +41,34 @@ const Home = () => {
         </section>
 
         <section className="amap">
-          <img src={amapImage} alt="panier de l'amap" className="amap__picture" />
+          <img src={homepageAmap.img} alt="panier de l'amap" className="amap__picture" />
           <div className="amap-content">
-            <h1 className="amap__title">Notre Amap</h1>
+            <h1 className="amap__title">{homepageAmap.title}</h1>
             <p className="amap__description">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Ipsam saepe ad quasi placeat quam sit,
-              suscipit minus facere doloremque voluptatum tempore animi.
-              Debitis ad nemo obcaecati ut repellendus id voluptatem!
+              {homepageAmap.description}
             </p>
-            <NavLink className="global-cta" to="/nos-activites/amap">En savoir plus</NavLink>
+            <NavLink className="global-cta" to="/nos-activites/amap">{homepageAmap.cta}</NavLink>
           </div>
         </section>
 
         <section className="cards">
 
-          <div className="card-container">
-            <div className="card">
-              <div className="card__front">
-                <h1 className="card__front-title">Vente Direct</h1>
-                <img src={saleImage} alt="illustration animée" className="card__front-image" />
-              </div>
-              <div className="card__back">
-                <p className="card__back-description">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Cumque quos sapiente dolorem.
-                </p>
-                <NavLink className="global-cta" to="/nos-activites/vente-direct">En savoir plus</NavLink>
-              </div>
-            </div>
-          </div>
-
-          <div className="card-container">
-            <div className="card">
-              <div className="card__front">
-                <h1 className="card__front-title">Nos partenaires</h1>
-                <img src={partnerImage} alt="illustration nos partenaires" className="card__front-image" />
-              </div>
-              <div className="card__back">
-                <p className="card__back-description">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Cumque quos sapiente dolorem.
-                </p>
-                <NavLink className="global-cta" to="/nos-activites/nos-partenaires">En savoir plus</NavLink>
+          {homepageCards.map((card) => (
+            <div className="card-container">
+              <div className="card">
+                <div className="card__front">
+                  <h1 className="card__front-title">{card.title}</h1>
+                  <img src={card.img} alt={`Lien vers page ${card.title}`} className="card__front-image" />
+                </div>
+                <div className="card__back">
+                  <p className="card__back-description">
+                    {card.description}
+                  </p>
+                  <NavLink className="global-cta" to="/nos-activites/vente-direct">{card.cta}</NavLink>
+                </div>
               </div>
             </div>
-          </div>
+          ))}
 
         </section>
 
