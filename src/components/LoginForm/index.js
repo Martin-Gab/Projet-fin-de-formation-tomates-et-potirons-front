@@ -55,7 +55,18 @@ const LoginForm = () => {
             dispatch(inputChangeLogin(evt.target.value, 'password'));
           }}
         />
-        <p className="login-form__membership">Pas encore adhérent, <NavLink to="/nos-activites/amap" className="login-form__link">c'est par ici !</NavLink></p>
+        <p className="login-form__membership">
+          Pas encore adhérent,
+          <NavLink
+            to="/nos-activites/amap"
+            className="login-form__link"
+            onClick={() => {
+              dispatch(closeLogin());
+            }}
+          >
+            c'est par ici !
+          </NavLink>
+        </p>
         <button type="submit" className="login-form__btn">Se connecter</button>
       </form>
     </div>
