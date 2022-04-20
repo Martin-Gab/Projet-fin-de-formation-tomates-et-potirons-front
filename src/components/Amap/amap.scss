@@ -39,7 +39,8 @@
     position: relative;
 
     .amap-image {
-        max-width: 90%;
+        max-width: 420px;
+        border-radius: 10px;
     }
 
     .amap-infos {
@@ -101,12 +102,19 @@
 @media screen and (min-width: 800px) {
     .amap-page {
         flex-direction: row;
+        justify-content: space-around;
         min-height: calc(100vh - 5rem);
         max-width: 1235px;
+
+        .amap-image {
+            width: 48%;
+            max-width: fit-content;
+        }
 
         .amap-infos {
             text-align: right;
             align-items: flex-end;
+            width: 48%;
 
             &__description {
                 width: 70%;

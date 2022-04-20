@@ -12,6 +12,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { X } from 'react-feather';
 
+// Data content Import
+import { contentAmap } from 'src/data/content';
+
 const Amap = () => {
   const dispatch = useDispatch();
 
@@ -39,13 +42,12 @@ const Amap = () => {
 
       <section className="amap-page">
 
-        <img src={amapImage} alt="illustration de l'amap" className="amap-image" />
+        <img src={contentAmap.img} alt="illustration de l'amap" className="amap-image" />
 
         <div className="amap-infos">
-          <h1 className="amap-infos__title">Notre Amap</h1>
+          <h1 className="amap-infos__title">{contentAmap.title}</h1>
           <p className="amap-infos__description">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Alias ipsa eaque fugiat beatae quos consectetur quis, maxime saepe vitae.
+            {contentAmap.description}
           </p>
           <div
             className="amap-infos__cta"
@@ -53,7 +55,7 @@ const Amap = () => {
               dispatch(openForm());
             }}
           >
-            Adhérer à l'AMAP
+            {contentAmap.cta}
           </div>
           <div className="modal-wrapper">
             <div className="amap-infos__modal">Charte AMAP</div>
