@@ -7,15 +7,16 @@ import './footer.scss';
 import { Facebook, Instagram } from 'react-feather';
 import { NavLink } from 'react-router-dom';
 
+// Data content Import
+import { contentFooterContact } from 'src/data/content';
+
 const Footer = () => (
   <footer>
     <div className="contact">
       <h2 className="footer-title">Contact</h2>
-      <p className="contact__infos">Tomates & Potirons</p>
-      <p className="contact__infos">14 rue xxxxxxxxxx</p>
-      <p className="contact__infos">12345 Poitiers</p>
-      <p className="contact__infos">tomates&potirons@gmail.com</p>
-      <p className="contact__infos">06 09 45 34 34</p>
+      {contentFooterContact.map((item) => (
+        <p className="contact__infos">{item}</p>
+      ))}
     </div>
     <div className="navigation">
       <h2 className="footer-title">Navigation</h2>
